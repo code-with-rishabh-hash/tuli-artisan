@@ -1,0 +1,226 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════
+   Tuli Artisan — Design Tokens (CSS Custom Properties)
+   ═══════════════════════════════════════════════ */
+
+:root,
+[data-theme="light"] {
+  --color-dark: #171412;
+  --color-mid: #555248;
+  --color-light: #A39E93;
+  --color-cream: #FAF8F4;
+  --color-gold: #B8960C;
+  --color-gold-highlight: #D4B545;
+  --color-divider: #E8E3DA;
+  --color-bg: #FAF8F4;
+  --color-bg-alt: #F0EBE1;
+  --color-surface: #FFFFFF;
+  --color-dark-bg: #171412;
+  --color-nav-bg: rgba(250, 248, 244, 0.92);
+  --color-hero-overlay: linear-gradient(
+    180deg,
+    rgba(23, 20, 18, 0.3) 0%,
+    rgba(23, 20, 18, 0.6) 60%,
+    rgba(23, 20, 18, 0.85) 100%
+  );
+  --shadow-card: 0 24px 64px rgba(23, 20, 18, 0.07);
+  --shadow-soft: 0 4px 24px rgba(23, 20, 18, 0.05);
+  --color-text-on-dark: #EDE8DF;
+  --color-text-on-dark-soft: rgba(237, 232, 223, 0.65);
+  --color-text-on-dark-muted: rgba(237, 232, 223, 0.4);
+  --color-scroll-thumb: #C8C3B8;
+  --color-img-placeholder: #E8E3DA;
+  --color-btn-primary-bg: #171412;
+  --color-btn-primary-text: #FAF8F4;
+}
+
+[data-theme="dark"] {
+  --color-dark: #EDE8DF;
+  --color-mid: #9B958A;
+  --color-light: #6B665D;
+  --color-cream: #0C0B09;
+  --color-gold: #D4B96E;
+  --color-gold-highlight: #D4B545;
+  --color-divider: rgba(237, 232, 223, 0.07);
+  --color-bg: #0C0B09;
+  --color-bg-alt: #131210;
+  --color-surface: #1A1815;
+  --color-dark-bg: #070605;
+  --color-nav-bg: rgba(12, 11, 9, 0.92);
+  --color-hero-overlay: linear-gradient(
+    180deg,
+    rgba(12, 11, 9, 0.3) 0%,
+    rgba(12, 11, 9, 0.6) 60%,
+    rgba(12, 11, 9, 0.9) 100%
+  );
+  --shadow-card: 0 24px 64px rgba(0, 0, 0, 0.4);
+  --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.3);
+  --color-scroll-thumb: #2A2622;
+  --color-img-placeholder: #1A1815;
+  --color-btn-primary-bg: #EDE8DF;
+  --color-btn-primary-text: #0C0B09;
+}
+
+/* ═══════════════════════════════════════════════
+   Global Reset & Base
+   ═══════════════════════════════════════════════ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-dark);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::selection {
+  background: var(--color-gold);
+  color: #fff;
+}
+
+/* ═══════════════════════════════════════════════
+   Scrollbar
+   ═══════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-scroll-thumb);
+  border-radius: 3px;
+}
+
+/* ═══════════════════════════════════════════════
+   Button System
+   ═══════════════════════════════════════════════ */
+
+.tuli-btn-primary {
+  padding: 18px 48px;
+  background: var(--color-btn-primary-bg);
+  color: var(--color-btn-primary-text);
+  border: none;
+  font-family: var(--font-karla, "Karla", sans-serif);
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.tuli-btn-primary:hover {
+  background: var(--color-gold);
+  color: #fff;
+}
+.tuli-btn-primary:active {
+  transform: scale(0.97);
+}
+
+.tuli-btn-ghost {
+  padding: 18px 48px;
+  background: transparent;
+  color: var(--color-text-on-dark);
+  border: 1px solid rgba(237, 232, 223, 0.2);
+  font-family: var(--font-karla, "Karla", sans-serif);
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 400;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.tuli-btn-ghost:hover {
+  border-color: rgba(237, 232, 223, 0.6);
+  background: rgba(237, 232, 223, 0.05);
+}
+.tuli-btn-ghost:active {
+  transform: scale(0.97);
+}
+
+/* ═══════════════════════════════════════════════
+   Interactive Effects
+   ═══════════════════════════════════════════════ */
+
+.tuli-card-hover {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tuli-card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-card);
+}
+
+.tuli-zoom-parent:hover .tuli-zoom-img {
+  transform: scale(1.04) !important;
+}
+
+input::placeholder {
+  color: rgba(237, 232, 223, 0.3);
+}
+
+/* ═══════════════════════════════════════════════
+   Keyframe Animations
+   ═══════════════════════════════════════════════ */
+
+@keyframes tuliSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tuliBounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(10px);
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .tuli-desktop-nav {
+    display: none !important;
+  }
+  .tuli-mobile-controls {
+    display: flex !important;
+  }
+  .tuli-product-grid {
+    grid-template-columns: 1fr !important;
+    gap: 48px !important;
+  }
+  .tuli-artisan-row {
+    grid-template-columns: 1fr !important;
+  }
+  .tuli-artisan-img {
+    order: 0 !important;
+  }
+  .tuli-artisan-hero {
+    grid-template-columns: 1fr !important;
+    padding: 88px 32px 68px !important;
+  }
+}
