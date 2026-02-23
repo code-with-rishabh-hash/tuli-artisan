@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { razorpay } from "@/lib/razorpay";
+import { getRazorpay } from "@/lib/razorpay";
 import crypto from "crypto";
 
 function generateOrderNumber() {
@@ -85,7 +85,7 @@ export async function POST(request: Request) {
   const orderNumber = generateOrderNumber();
 
   // Create Razorpay order
-  const razorpayOrder = await razorpay.orders.create({
+  const razorpayOrder = await getRazorpay().orders.create({
     amount: total * 100, // Razorpay expects amount in paise
     currency: "INR",
     receipt: orderNumber,
