@@ -34,9 +34,10 @@ interface CheckoutFormProps {
   addresses: Address[];
   isLoggedIn: boolean;
   userEmail?: string;
+  isDemo?: boolean;
 }
 
-export default function CheckoutForm({ addresses, isLoggedIn, userEmail }: CheckoutFormProps) {
+export default function CheckoutForm({ addresses, isLoggedIn, userEmail, isDemo }: CheckoutFormProps) {
   const router = useRouter();
   const { cart, cartTotal, clearCart } = useCart();
   const [selectedAddress, setSelectedAddress] = useState(addresses.find((a) => a.isDefault)?.id ?? addresses[0]?.id ?? "");
@@ -108,6 +109,14 @@ export default function CheckoutForm({ addresses, isLoggedIn, userEmail }: Check
 
     setProcessing(true);
     setError("");
+
+    // Demo mode — simulate a successful order
+    if (isDemo) {
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      clearCart();
+      router.push("/order-confirmation/demo");
+      return;
+    }
 
     try {
       const body: Record<string, unknown> = {

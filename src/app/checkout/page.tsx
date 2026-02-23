@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
 import CheckoutForm from "@/components/checkout/CheckoutForm";
 
 export const metadata: Metadata = {
@@ -9,6 +8,7 @@ export const metadata: Metadata = {
 
 export default async function CheckoutPage() {
   const session = await auth();
+  const isDemo = !process.env.DATABASE_URL;
 
   let addresses: {
     id: string;
@@ -23,7 +23,8 @@ export default async function CheckoutPage() {
     isDefault: boolean;
   }[] = [];
 
-  if (session?.user?.id) {
+  if (!isDemo && session?.user?.id) {
+    const { prisma } = await import("@/lib/prisma");
     const dbAddresses = await prisma.address.findMany({
       where: { userId: session.user.id },
       orderBy: [{ isDefault: "desc" }, { createdAt: "desc" }],
@@ -68,6 +69,7 @@ export default async function CheckoutPage() {
           addresses={addresses}
           isLoggedIn={!!session?.user}
           userEmail={session?.user?.email ?? undefined}
+          isDemo={isDemo}
         />
       </div>
     </main>
