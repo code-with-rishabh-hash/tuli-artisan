@@ -4,9 +4,15 @@ import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ProductGrid } from "@/components/product/ProductGrid";
-import { PRODUCTS } from "@/data/products";
+import type { Product, Promotion } from "@/types";
 
-export function FeaturedProducts() {
+interface FeaturedProductsProps {
+  products: Product[];
+  artisans: Record<string, { name: string; region: string }>;
+  promos: Record<string, Promotion>;
+}
+
+export function FeaturedProducts({ products, artisans, promos }: FeaturedProductsProps) {
   return (
     <section style={{ padding: "80px 32px 120px", background: "var(--color-bg)" }}>
       <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
@@ -62,7 +68,7 @@ export function FeaturedProducts() {
             </Link>
           </div>
         </Reveal>
-        <ProductGrid products={PRODUCTS.slice(0, 4)} />
+        <ProductGrid products={products} artisans={artisans} promos={promos} />
       </div>
     </section>
   );

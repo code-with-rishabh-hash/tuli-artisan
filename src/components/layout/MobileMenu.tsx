@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { EASE } from "@/lib/constants";
 
 const LINKS = [
@@ -16,6 +17,8 @@ interface MobileMenuProps {
 }
 
 export function MobileMenu({ cartCount, onClose }: MobileMenuProps) {
+  const { data: session } = useSession();
+
   return (
     <div
       style={{
@@ -50,6 +53,25 @@ export function MobileMenu({ cartCount, onClose }: MobileMenuProps) {
           {l.label}
         </Link>
       ))}
+
+      <Link
+        href={session ? "/account" : "/login"}
+        onClick={onClose}
+        style={{
+          fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
+          fontWeight: 300,
+          color: "var(--color-dark)",
+          letterSpacing: "-0.02em",
+          lineHeight: 1.1,
+          fontSize: "38px",
+          textDecoration: "none",
+          opacity: 0,
+          animation: `tuliSlideIn 0.6s ${EASE} ${LINKS.length * 0.08}s forwards`,
+        }}
+      >
+        {session ? "Account" : "Sign In"}
+      </Link>
+
       <Link
         href="/cart"
         onClick={onClose}
@@ -63,7 +85,7 @@ export function MobileMenu({ cartCount, onClose }: MobileMenuProps) {
           textDecoration: "none",
           marginTop: 8,
           opacity: 0,
-          animation: `tuliSlideIn 0.6s ${EASE} ${LINKS.length * 0.08}s forwards`,
+          animation: `tuliSlideIn 0.6s ${EASE} ${(LINKS.length + 1) * 0.08}s forwards`,
         }}
       >
         Bag {cartCount > 0 && `(${cartCount})`}

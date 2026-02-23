@@ -1,15 +1,15 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ARTISANS, getArtisan } from "@/data/artisans";
-import { PRODUCTS } from "@/data/products";
+import { getArtisan, getArtisans, getProductsByArtisan } from "@/lib/dal";
 import { Reveal } from "@/components/ui/Reveal";
 import { Img } from "@/components/ui/Img";
 import { CraftBadge } from "@/components/ui/CraftBadge";
 import { Divider } from "@/components/ui/Divider";
 import { ProductGrid } from "@/components/product/ProductGrid";
 
-export function generateStaticParams() {
-  return ARTISANS.map((a) => ({ id: a.id }));
+export async function generateStaticParams() {
+  const artisans = await getArtisans();
+  return artisans.map((a) => ({ id: a.slug }));
 }
 
 export async function generateMetadata({
@@ -18,7 +18,7 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const artisan = getArtisan(id);
+  const artisan = await getArtisan(id);
   if (!artisan) return { title: "Artisan Not Found" };
   return {
     title: `${artisan.name} \u2014 ${artisan.craft}`,
@@ -33,10 +33,15 @@ export default async function ArtisanDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const artisan = getArtisan(id);
+  const artisan = await getArtisan(id);
   if (!artisan) notFound();
 
-  const artisanProducts = PRODUCTS.filter((p) => p.artisanId === id);
+  const artisanProducts = await getProductsByArtisan(artisan.id);
+
+  // Build artisan lookup for ProductGrid
+  const artisanMap: Record<string, { name: string; region: string }> = {
+    [artisan.id]: { name: artisan.name, region: artisan.region },
+  };
 
   return (
     <div style={{ paddingTop: 0, background: "var(--color-bg)", minHeight: "100vh" }}>
@@ -128,7 +133,7 @@ export default async function ArtisanDetailPage({
             Pieces by {artisan.name}
           </h2>
         </Reveal>
-        <ProductGrid products={artisanProducts} />
+        <ProductGrid products={artisanProducts} artisans={artisanMap} />
       </section>
     </div>
   );

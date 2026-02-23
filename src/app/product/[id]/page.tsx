@@ -1,8 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { PRODUCTS, getProduct } from "@/data/products";
-import { getArtisan } from "@/data/artisans";
-import { formatPrice, getProductPromo } from "@/lib/utils";
+import { getProduct, getProducts, getArtisanById, getProductPromo } from "@/lib/dal";
+import { formatPrice } from "@/lib/utils";
 import { Reveal } from "@/components/ui/Reveal";
 import { Img } from "@/components/ui/Img";
 import { Tag } from "@/components/ui/Tag";
@@ -13,8 +12,9 @@ import { Breadcrumb } from "@/components/product/Breadcrumb";
 import { ProductActions } from "@/components/product/ProductActions";
 import Link from "next/link";
 
-export function generateStaticParams() {
-  return PRODUCTS.map((p) => ({ id: p.id }));
+export async function generateStaticParams() {
+  const products = await getProducts();
+  return products.map((p) => ({ id: p.slug }));
 }
 
 export async function generateMetadata({
@@ -23,7 +23,7 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const product = getProduct(id);
+  const product = await getProduct(id);
   if (!product) return { title: "Product Not Found" };
   return {
     title: product.name,
@@ -34,12 +34,12 @@ export async function generateMetadata({
 
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const product = getProduct(id);
+  const product = await getProduct(id);
 
   if (!product) notFound();
 
-  const artisan = getArtisan(product.artisanId);
-  const promo = getProductPromo(product.id);
+  const artisan = await getArtisanById(product.artisanId);
+  const promo = await getProductPromo(product.slug);
 
   return (
     <div style={{ paddingTop: 80, background: "var(--color-bg)", minHeight: "100vh" }}>
@@ -102,7 +102,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             >
               by{" "}
               <Link
-                href={`/artisan/${artisan?.id}`}
+                href={`/artisan/${artisan?.slug}`}
                 style={{
                   color: "var(--color-gold)",
                   borderBottom: "1px solid var(--color-gold)",

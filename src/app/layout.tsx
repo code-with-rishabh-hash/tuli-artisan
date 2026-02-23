@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { Cormorant_Garamond, Karla } from "next/font/google";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { CartProvider } from "@/context/CartContext";
+import { AuthProvider } from "@/context/AuthProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { GrainOverlay } from "@/components/ui/GrainOverlay";
@@ -57,14 +58,16 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           minHeight: "100vh",
         }}
       >
-        <ThemeProvider initialTheme={theme}>
-          <CartProvider>
-            <GrainOverlay />
-            <Navbar />
-            {children}
-            <Footer />
-          </CartProvider>
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider initialTheme={theme}>
+            <CartProvider>
+              <GrainOverlay />
+              <Navbar />
+              {children}
+              <Footer />
+            </CartProvider>
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );

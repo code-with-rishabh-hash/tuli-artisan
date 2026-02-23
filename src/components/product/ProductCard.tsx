@@ -6,26 +6,26 @@ import { HoverImg } from "@/components/ui/HoverImg";
 import { CraftBadge } from "@/components/ui/CraftBadge";
 import { Tag } from "@/components/ui/Tag";
 import { Reveal } from "@/components/ui/Reveal";
-import { getArtisan } from "@/data/artisans";
-import { formatPrice, getProductPromo } from "@/lib/utils";
+import { formatPrice } from "@/lib/utils";
 import { EASE } from "@/lib/constants";
-import type { Product } from "@/types";
+import type { Product, Promotion } from "@/types";
 
 interface ProductCardProps {
   product: Product;
   index?: number;
+  artisanName?: string;
+  artisanRegion?: string;
+  promo?: Promotion | null;
 }
 
-export function ProductCard({ product, index = 0 }: ProductCardProps) {
+export function ProductCard({ product, index = 0, artisanName, artisanRegion, promo }: ProductCardProps) {
   const [hov, setHov] = useState(false);
-  const artisan = getArtisan(product.artisanId);
-  const promo = getProductPromo(product.id);
   const hasDiscount = product.originalPrice || promo;
 
   return (
     <Reveal delay={index * 0.08}>
       <Link
-        href={`/product/${product.id}`}
+        href={`/product/${product.slug}`}
         onMouseEnter={() => setHov(true)}
         onMouseLeave={() => setHov(false)}
         style={{ cursor: "pointer", position: "relative", display: "block", textDecoration: "none" }}
@@ -81,17 +81,19 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
         >
           {product.name}
         </h3>
-        <p
-          style={{
-            fontFamily: 'var(--font-karla, "Karla", sans-serif)',
-            fontSize: "12px",
-            color: "var(--color-light)",
-            marginBottom: "12px",
-            letterSpacing: "0.3px",
-          }}
-        >
-          by {artisan?.name} &middot; {artisan?.region}
-        </p>
+        {artisanName && (
+          <p
+            style={{
+              fontFamily: 'var(--font-karla, "Karla", sans-serif)',
+              fontSize: "12px",
+              color: "var(--color-light)",
+              marginBottom: "12px",
+              letterSpacing: "0.3px",
+            }}
+          >
+            by {artisanName} &middot; {artisanRegion}
+          </p>
+        )}
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <span
             style={{

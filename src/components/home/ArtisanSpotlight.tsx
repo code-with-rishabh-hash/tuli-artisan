@@ -4,10 +4,14 @@ import { Divider } from "@/components/ui/Divider";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { HoverImg } from "@/components/ui/HoverImg";
 import { CraftBadge } from "@/components/ui/CraftBadge";
-import { ARTISANS } from "@/data/artisans";
 import { EASE, EASE_HOVER } from "@/lib/constants";
+import type { Artisan } from "@/types";
 
-export function ArtisanSpotlight() {
+interface ArtisanSpotlightProps {
+  artisans: Artisan[];
+}
+
+export function ArtisanSpotlight({ artisans }: ArtisanSpotlightProps) {
   return (
     <section style={{ padding: "130px 32px", background: "var(--color-bg)" }}>
       <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
@@ -38,10 +42,10 @@ export function ArtisanSpotlight() {
             gap: "32px",
           }}
         >
-          {ARTISANS.map((a, i) => (
+          {artisans.map((a, i) => (
             <Reveal key={a.id} delay={i * 0.12}>
               <Link
-                href={`/artisan/${a.id}`}
+                href={`/artisan/${a.slug}`}
                 className="tuli-card-hover"
                 style={{
                   cursor: "pointer",

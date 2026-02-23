@@ -1,12 +1,13 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { COLLECTIONS, getCollection, getCollectionProducts } from "@/data/collections";
+import { getCollection, getCollections, getCollectionProducts, getArtisans } from "@/lib/dal";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ProductGrid } from "@/components/product/ProductGrid";
 
-export function generateStaticParams() {
-  return COLLECTIONS.map((c) => ({ id: c.id }));
+export async function generateStaticParams() {
+  const collections = await getCollections();
+  return collections.map((c) => ({ id: c.slug }));
 }
 
 export async function generateMetadata({
@@ -15,7 +16,7 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const col = getCollection(id);
+  const col = await getCollection(id);
   if (!col) return { title: "Collection Not Found" };
   return {
     title: col.title,
@@ -30,10 +31,17 @@ export default async function CollectionDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const col = getCollection(id);
+  const col = await getCollection(id);
   if (!col) notFound();
 
-  const products = getCollectionProducts(col);
+  const products = await getCollectionProducts(col.slug);
+
+  // Build artisan lookup for ProductGrid
+  const allArtisans = await getArtisans();
+  const artisans: Record<string, { name: string; region: string }> = {};
+  for (const a of allArtisans) {
+    artisans[a.id] = { name: a.name, region: a.region };
+  }
 
   return (
     <div style={{ paddingTop: 0, background: "var(--color-bg)", minHeight: "100vh" }}>
@@ -90,7 +98,7 @@ export default async function CollectionDetailPage({
         </Reveal>
       </section>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "72px 32px 120px" }}>
-        <ProductGrid products={products} />
+        <ProductGrid products={products} artisans={artisans} />
       </div>
     </div>
   );

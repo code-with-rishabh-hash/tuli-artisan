@@ -2,7 +2,17 @@
 // Tuli Artisan — Type Definitions
 // ═══════════════════════════════════════════════
 
-export type CraftType = "Block Printing" | "Brass Metalwork" | "Handloom Weaving";
+export type CraftType =
+  | "Block Printing"
+  | "Brass Metalwork"
+  | "Handloom Weaving"
+  | "Pottery"
+  | "Embroidery"
+  | "Woodwork"
+  | "Leather"
+  | "Papier-mache"
+  | "Stone Carving"
+  | "Bamboo Craft";
 
 export type ProductTag =
   | "Bestseller"
@@ -14,9 +24,11 @@ export type ProductTag =
 
 export interface Artisan {
   id: string;
+  slug: string;
   name: string;
   craft: CraftType;
   region: string;
+  state: string;
   bio: string;
   story: string;
   quote: string;
@@ -26,6 +38,7 @@ export interface Artisan {
 
 export interface Product {
   id: string;
+  slug: string;
   name: string;
   artisanId: string;
   craft: CraftType;
@@ -41,8 +54,13 @@ export interface Product {
   image: string;
 }
 
+export interface ProductWithArtisan extends Product {
+  artisan: Artisan;
+}
+
 export interface Collection {
   id: string;
+  slug: string;
   title: string;
   subtitle: string;
   description: string;
@@ -72,3 +90,23 @@ export type CraftFilter = "all" | CraftType;
 
 export type TagVariant = "default" | "gold" | "outline" | "sale";
 export type RevealDirection = "up" | "down" | "left" | "right" | "none" | "scale";
+
+// ──────────────────────────────
+// Filter Types
+// ──────────────────────────────
+
+export interface ProductFilters {
+  craft?: string;
+  artisan?: string;
+  state?: string;
+  search?: string;
+  minPrice?: number;
+  maxPrice?: number;
+  sort?: SortOption;
+}
+
+export interface ArtisanFilters {
+  craft?: string;
+  state?: string;
+  search?: string;
+}
