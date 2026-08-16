@@ -48,7 +48,8 @@ export default async function CollectionDetailPage({
       <section
         style={{
           position: "relative",
-          minHeight: 420,
+          minHeight: 540,
+          overflow: "hidden",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -62,21 +63,35 @@ export default async function CollectionDetailPage({
             backgroundImage: `url(${col.image})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            filter: "brightness(0.32)",
+            filter: "brightness(0.55) saturate(0.9)",
+          }}
+        />
+        <div style={{ position: "absolute", inset: 0, background: "var(--color-hero-overlay)" }} />
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: "var(--tex-buti)",
+            backgroundSize: "150px 150px",
+            opacity: 0.08,
+            mixBlendMode: "screen",
+            pointerEvents: "none",
           }}
         />
         <Reveal>
-          <div style={{ position: "relative", zIndex: 2, padding: "130px 32px 88px" }}>
-            <SectionLabel color="var(--color-text-on-dark-muted)">{col.season}</SectionLabel>
+          <div style={{ position: "relative", zIndex: 2, padding: "140px 32px 96px" }}>
+            <SectionLabel color="var(--color-gold-highlight)">{col.season}</SectionLabel>
             <h1
               style={{
-                fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
-                fontWeight: 200,
+                fontFamily: 'var(--font-cormorant, "Bodoni Moda", serif)',
+                fontWeight: 400,
                 color: "var(--color-text-on-dark)",
-                letterSpacing: "-0.02em",
-                lineHeight: 1.1,
-                fontSize: "clamp(40px, 6vw, 76px)",
-                margin: "14px 0",
+                letterSpacing: "-0.01em",
+                lineHeight: 1.0,
+                fontSize: "clamp(44px, 6.5vw, 84px)",
+                margin: "16px 0 20px",
+                textWrap: "balance",
               }}
             >
               {col.title}
@@ -86,14 +101,26 @@ export default async function CollectionDetailPage({
                 fontFamily: 'var(--font-karla, "Karla", sans-serif)',
                 fontWeight: 400,
                 color: "var(--color-text-on-dark-soft)",
-                lineHeight: 1.8,
-                fontSize: "15.5px",
+                lineHeight: 1.85,
+                fontSize: "16px",
                 maxWidth: 540,
-                margin: "0 auto",
+                margin: "0 auto 26px",
               }}
             >
               {col.description}
             </p>
+            <span
+              style={{
+                fontFamily: 'var(--font-karla, "Karla", sans-serif)',
+                fontSize: 10,
+                letterSpacing: "3px",
+                textTransform: "uppercase",
+                fontWeight: 600,
+                color: "var(--color-text-on-dark-muted)",
+              }}
+            >
+              {products.length} {products.length === 1 ? "piece" : "pieces"}
+            </span>
           </div>
         </Reveal>
       </section>

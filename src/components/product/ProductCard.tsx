@@ -70,13 +70,13 @@ export function ProductCard({ product, index = 0, artisanName, artisanRegion, pr
         <CraftBadge craft={product.craft} />
         <h3
           style={{
-            fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
+            fontFamily: 'var(--font-cormorant, "Bodoni Moda", serif)',
             fontWeight: 400,
             color: "var(--color-dark)",
-            fontSize: "21px",
-            letterSpacing: "-0.02em",
-            lineHeight: 1.1,
-            margin: "14px 0 6px",
+            fontSize: "22px",
+            letterSpacing: "-0.01em",
+            lineHeight: 1.12,
+            margin: "14px 0 4px",
           }}
         >
           {product.name}
@@ -84,14 +84,16 @@ export function ProductCard({ product, index = 0, artisanName, artisanRegion, pr
         {artisanName && (
           <p
             style={{
-              fontFamily: 'var(--font-karla, "Karla", sans-serif)',
-              fontSize: "12px",
-              color: "var(--color-light)",
+              fontFamily: 'var(--font-cormorant, "Bodoni Moda", serif)',
+              fontStyle: "italic",
+              fontSize: "15px",
+              color: "var(--color-mid)",
               marginBottom: "12px",
-              letterSpacing: "0.3px",
+              letterSpacing: "0.01em",
             }}
           >
-            by {artisanName} &middot; {artisanRegion}
+            by {artisanName}
+            {artisanRegion ? `, ${artisanRegion}` : ""}
           </p>
         )}
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>

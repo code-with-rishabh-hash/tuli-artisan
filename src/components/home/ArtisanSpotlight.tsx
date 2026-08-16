@@ -2,9 +2,7 @@ import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 import { Divider } from "@/components/ui/Divider";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { HoverImg } from "@/components/ui/HoverImg";
 import { CraftBadge } from "@/components/ui/CraftBadge";
-import { EASE, EASE_HOVER } from "@/lib/constants";
 import type { Artisan } from "@/types";
 
 interface ArtisanSpotlightProps {
@@ -12,95 +10,78 @@ interface ArtisanSpotlightProps {
 }
 
 export function ArtisanSpotlight({ artisans }: ArtisanSpotlightProps) {
-  return (
-    <section style={{ padding: "130px 32px", background: "var(--color-bg)" }}>
-      <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
-        <Reveal>
-          <div style={{ textAlign: "center", marginBottom: "72px" }}>
-            <Divider width="32px" color="var(--color-gold)" style={{ margin: "0 auto 28px" }} />
-            <SectionLabel>Meet the Makers</SectionLabel>
-            <h2
-              style={{
-                fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
-                fontWeight: 300,
-                color: "var(--color-dark)",
-                letterSpacing: "-0.02em",
-                lineHeight: 1.1,
-                fontSize: "clamp(30px, 4vw, 48px)",
-                marginTop: 10,
-              }}
-            >
-              Our Artisans
-            </h2>
-          </div>
-        </Reveal>
+  const [featured, ...rest] = artisans;
+  if (!featured) return null;
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
-            gap: "32px",
-          }}
-        >
-          {artisans.map((a, i) => (
-            <Reveal key={a.id} delay={i * 0.12}>
-              <Link
-                href={`/artisan/${a.slug}`}
-                className="tuli-card-hover"
-                style={{
-                  cursor: "pointer",
-                  background: "var(--color-surface)",
-                  overflow: "hidden",
-                  border: "1px solid var(--color-divider)",
-                  transition: `transform 0.6s ${EASE}, box-shadow 0.6s ${EASE_HOVER}`,
-                  display: "block",
-                  textDecoration: "none",
-                }}
-              >
-                <HoverImg src={a.image} alt={a.name} aspect="4/3" />
-                <div style={{ padding: "32px 32px 36px" }}>
-                  <CraftBadge craft={a.craft} />
-                  <h3
-                    style={{
-                      fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
-                      fontWeight: 400,
-                      color: "var(--color-dark)",
-                      letterSpacing: "-0.02em",
-                      lineHeight: 1.1,
-                      fontSize: "24px",
-                      margin: "16px 0 6px",
-                    }}
-                  >
-                    {a.name}
-                  </h3>
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-karla, "Karla", sans-serif)',
-                      fontSize: "12px",
-                      color: "var(--color-gold)",
-                      letterSpacing: "0.5px",
-                      marginBottom: 16,
-                    }}
-                  >
-                    {a.region} &middot; {a.yearsOfPractice} years
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-karla, "Karla", sans-serif)',
-                      fontWeight: 400,
-                      color: "var(--color-mid)",
-                      lineHeight: 1.8,
-                      fontSize: "14px",
-                    }}
-                  >
-                    {a.bio}
-                  </p>
-                  <Divider width="28px" color="var(--color-gold)" style={{ marginTop: 24 }} />
-                </div>
-              </Link>
-            </Reveal>
-          ))}
+  const firstName = featured.name.split(" ")[0];
+  const place = featured.region.split(",")[0];
+
+  return (
+    <section className="tuli-art-section">
+      <Reveal>
+        <div className="tuli-art-head">
+          <Divider width="32px" color="var(--color-gold)" style={{ margin: "0 auto 28px" }} />
+          <SectionLabel>Meet the Makers</SectionLabel>
+          <h2 className="tuli-art-title">Keepers of the Craft</h2>
         </div>
+      </Reveal>
+
+      {/* Featured maker - magazine spread */}
+      <Reveal>
+        <div className="tuli-art-spread">
+          <Link
+            href={`/artisan/${featured.slug}`}
+            className="tuli-art-spread-media tuli-zoom-parent"
+            aria-label={`Read ${featured.name}'s story`}
+          >
+            <div
+              className="tuli-zoom-img tuli-art-spread-img"
+              style={{ backgroundImage: `url(${featured.image})` }}
+            />
+          </Link>
+          <div>
+            <span className="tuli-art-spread-craft">{featured.craft}</span>
+            <p className="tuli-art-spread-quote">&ldquo;{featured.quote}&rdquo;</p>
+            <p className="tuli-art-spread-bio">{featured.bio}</p>
+            <div className="tuli-art-spread-meta">
+              <div>
+                <div className="n">{featured.yearsOfPractice}</div>
+                <div className="l">Years of practice</div>
+              </div>
+              <div>
+                <div className="n" style={{ fontSize: 26 }}>{place}</div>
+                <div className="l">Where it is made</div>
+              </div>
+            </div>
+            <Link href={`/artisan/${featured.slug}`} className="tuli-art-link">
+              Read {firstName}&apos;s story &rarr;
+            </Link>
+          </div>
+        </div>
+      </Reveal>
+
+      {/* Remaining makers - clean grid */}
+      <div className="tuli-art-grid">
+        {rest.map((a, i) => (
+          <Reveal key={a.id} delay={i * 0.06}>
+            <Link href={`/artisan/${a.slug}`} className="tuli-art-card tuli-zoom-parent">
+              <div className="tuli-art-card-media">
+                <div
+                  className="tuli-zoom-img tuli-art-card-img"
+                  style={{ backgroundImage: `url(${a.image})` }}
+                />
+              </div>
+              <div className="tuli-art-card-body">
+                <CraftBadge craft={a.craft} />
+                <h3 className="tuli-art-card-name">{a.name}</h3>
+                <p className="tuli-art-card-region">
+                  {a.region} &middot; {a.yearsOfPractice} years
+                </p>
+                <p className="tuli-art-card-bio">{a.bio}</p>
+              </div>
+            </Link>
+          </Reveal>
+        ))}
       </div>
     </section>
   );

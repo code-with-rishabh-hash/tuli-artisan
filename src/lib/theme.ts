@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Tuli Artisan — Theme Color Reference
+// Tuli Artisan - Theme Color Reference
 // ═══════════════════════════════════════════════
 //
 // All theme colors are defined as CSS custom properties in globals.css.

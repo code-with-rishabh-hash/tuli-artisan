@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Tuli Artisan — Razorpay Server Client
+// Tuli Artisan - Razorpay Server Client
 // ═══════════════════════════════════════════════
 
 import Razorpay from "razorpay";

@@ -10,7 +10,7 @@ export default async function OrderConfirmationPage({ params }: { params: Promis
   const { id } = await params;
   const isDemo = !process.env.DATABASE_URL;
 
-  // Demo mode — show a static confirmation
+  // Demo mode - show a static confirmation
   if (isDemo || id === "demo") {
     return (
       <main
@@ -78,7 +78,7 @@ export default async function OrderConfirmationPage({ params }: { params: Promis
     );
   }
 
-  // Production mode — fetch real order
+  // Production mode - fetch real order
   const session = await auth();
   const { prisma } = await import("@/lib/prisma");
 

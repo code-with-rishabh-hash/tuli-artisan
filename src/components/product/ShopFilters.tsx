@@ -276,7 +276,7 @@ export function ShopFilters({ products, artisans, artisanList, promos, states, p
                 <option value="">All Artisans</option>
                 {artisanList.map((a) => (
                   <option key={a.id} value={a.id}>
-                    {a.name} — {a.craft}
+                    {a.name} · {a.craft}
                   </option>
                 ))}
               </select>

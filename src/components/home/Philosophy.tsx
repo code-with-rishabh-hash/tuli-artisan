@@ -34,9 +34,9 @@ export function Philosophy() {
               margin: "28px auto 0",
             }}
           >
-            Tuli connects you directly to master artisans &mdash; no middlemen, no markups, no mass
-            production. Each piece is made to order, carrying centuries of tradition in every stitch,
-            pour, and weave.
+            Tuli brings you to India&apos;s master artisans directly. No middlemen. No markups. No mass
+            production. Each piece is made to order, and carries centuries of tradition in every stitch,
+            every pour, every weave.
           </p>
         </div>
       </Reveal>

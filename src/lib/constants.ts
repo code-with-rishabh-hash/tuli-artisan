@@ -1,8 +1,8 @@
 // ═══════════════════════════════════════════════
-// Tuli Artisan — Constants
+// Tuli Artisan - Constants
 // ═══════════════════════════════════════════════
 
-/** Luxury entrance easing — slow start, smooth overshoot */
+/** Luxury entrance easing - slow start, smooth overshoot */
 export const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 
 /** Standard hover/interaction easing */

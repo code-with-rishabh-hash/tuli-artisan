@@ -1,9 +1,9 @@
 // ═══════════════════════════════════════════════
-// Tuli Artisan — Image URLs
+// Tuli Artisan - Image URLs
 // ═══════════════════════════════════════════════
 
 export const IMAGES = {
-  hero: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=1920&q=85&auto=format",
+  hero: "https://images.unsplash.com/photo-1544031089-3ebe8bf549b0?w=1920&q=85&auto=format",
   heroAlt: "https://images.unsplash.com/photo-1590736969955-71cc94901144?w=1920&q=85&auto=format",
   artisan1: "https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=800&q=80&auto=format",
   artisan2: "https://images.unsplash.com/photo-1621274403997-37aace184f49?w=800&q=80&auto=format",

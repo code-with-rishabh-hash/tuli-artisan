@@ -1,10 +1,10 @@
 import { Reveal } from "@/components/ui/Reveal";
 
 const TRUST_ITEMS = [
-  { icon: "\u2726", label: "Handcrafted", desc: "Every piece made by hand" },
-  { icon: "\u25C8", label: "Direct Trade", desc: "80%+ goes to artisans" },
-  { icon: "\u274B", label: "Heritage Crafts", desc: "Centuries-old techniques" },
-  { icon: "\u25CE", label: "Authenticated", desc: "Certificate of origin" },
+  { icon: "\u2726", label: "Handmade", desc: "Made entirely by hand" },
+  { icon: "\u25C8", label: "Direct Trade", desc: "Over 80% goes to the maker" },
+  { icon: "\u274B", label: "Heritage Crafts", desc: "Techniques centuries in the making" },
+  { icon: "\u25CE", label: "Authenticated", desc: "A signed certificate of origin" },
 ];
 
 export function TrustBar() {

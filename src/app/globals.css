@@ -1,65 +1,81 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════
-   Tuli Artisan — Design Tokens (CSS Custom Properties)
+   Tuli Artisan - Design Tokens (CSS Custom Properties)
    ═══════════════════════════════════════════════ */
 
+/* ── The Indigo Archive palette ───────────────────
+   Ground: raw undyed cotton (khadi). Ink: deep indigo.
+   Accents: brass (primary) and madder red (rare).
+   Indigo grounds are used for hero / artisan / closing sections. */
 :root,
 [data-theme="light"] {
-  --color-dark: #171412;
-  --color-mid: #555248;
-  --color-light: #A39E93;
-  --color-cream: #FAF8F4;
-  --color-gold: #B8960C;
-  --color-gold-highlight: #D4B545;
-  --color-divider: #E8E3DA;
-  --color-bg: #FAF8F4;
-  --color-bg-alt: #F0EBE1;
-  --color-surface: #FFFFFF;
-  --color-dark-bg: #171412;
-  --color-nav-bg: rgba(250, 248, 244, 0.92);
+  /* raw brand hues */
+  --color-indigo: #1C2B47;
+  --color-indigo-deep: #111B31;
+  --color-madder: #9E4A38;
+
+  --color-dark: #1B2231;           /* ink - indigo-tinted charcoal */
+  --color-mid: #5A5647;
+  --color-light: #9A9483;
+  --color-cream: #F1EBDC;          /* raw cotton */
+  --color-gold: #B07C34;           /* brass */
+  --color-gold-highlight: #D6A868; /* soft brass */
+  --color-divider: #DBD2BF;
+  --color-bg: #F1EBDC;             /* khadi cotton ground */
+  --color-bg-alt: #E6DECB;
+  --color-surface: #F8F3E8;
+  --color-dark-bg: #111B31;
+  --color-nav-bg: rgba(241, 235, 220, 0.9);
   --color-hero-overlay: linear-gradient(
-    180deg,
-    rgba(23, 20, 18, 0.3) 0%,
-    rgba(23, 20, 18, 0.6) 60%,
-    rgba(23, 20, 18, 0.85) 100%
+    170deg,
+    rgba(28, 43, 71, 0.55) 0%,
+    rgba(17, 27, 49, 0.7) 55%,
+    rgba(17, 27, 49, 0.92) 100%
   );
-  --shadow-card: 0 24px 64px rgba(23, 20, 18, 0.07);
-  --shadow-soft: 0 4px 24px rgba(23, 20, 18, 0.05);
-  --color-text-on-dark: #EDE8DF;
-  --color-text-on-dark-soft: rgba(237, 232, 223, 0.65);
-  --color-text-on-dark-muted: rgba(237, 232, 223, 0.4);
-  --color-scroll-thumb: #C8C3B8;
-  --color-img-placeholder: #E8E3DA;
-  --color-btn-primary-bg: #171412;
-  --color-btn-primary-text: #FAF8F4;
+  --shadow-card: 0 24px 64px rgba(17, 27, 49, 0.1);
+  --shadow-soft: 0 4px 24px rgba(17, 27, 49, 0.07);
+  --color-text-on-dark: #E7E0D0;
+  --color-text-on-dark-soft: rgba(231, 224, 208, 0.66);
+  --color-text-on-dark-muted: rgba(231, 224, 208, 0.4);
+  --color-scroll-thumb: #C6BCA5;
+  --color-img-placeholder: #E6DECB;
+  --color-btn-primary-bg: #1C2B47; /* indigo buttons */
+  --color-btn-primary-text: #F1EBDC;
+
+  /* hand block-print (buti) texture, brass on transparent */
+  --tex-buti: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23C0893C' stroke-width='1' opacity='0.6'%3E%3Ccircle cx='60' cy='60' r='5.5'/%3E%3Cpath d='M60 55 C51 46 51 32 60 24 C69 32 69 46 60 55Z'/%3E%3Cpath d='M60 65 C51 74 51 88 60 96 C69 88 69 74 60 65Z'/%3E%3Cpath d='M55 60 C46 51 32 51 24 60 C32 69 46 69 55 60Z'/%3E%3Cpath d='M65 60 C74 51 88 51 96 60 C88 69 74 69 65 60Z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 [data-theme="dark"] {
-  --color-dark: #EDE8DF;
-  --color-mid: #9B958A;
-  --color-light: #6B665D;
-  --color-cream: #0C0B09;
-  --color-gold: #D4B96E;
-  --color-gold-highlight: #D4B545;
-  --color-divider: rgba(237, 232, 223, 0.07);
-  --color-bg: #0C0B09;
-  --color-bg-alt: #131210;
-  --color-surface: #1A1815;
-  --color-dark-bg: #070605;
-  --color-nav-bg: rgba(12, 11, 9, 0.92);
+  --color-indigo: #1C2B47;
+  --color-indigo-deep: #0E1626;
+  --color-madder: #B85A46;
+
+  --color-dark: #E7E0D0;
+  --color-mid: #A79F8E;
+  --color-light: #6E6A5C;
+  --color-cream: #0E1626;
+  --color-gold: #D6A868;
+  --color-gold-highlight: #E0BC85;
+  --color-divider: rgba(231, 224, 208, 0.1);
+  --color-bg: #0E1626;
+  --color-bg-alt: #121C30;
+  --color-surface: #16203A;
+  --color-dark-bg: #090F1B;
+  --color-nav-bg: rgba(14, 22, 38, 0.92);
   --color-hero-overlay: linear-gradient(
-    180deg,
-    rgba(12, 11, 9, 0.3) 0%,
-    rgba(12, 11, 9, 0.6) 60%,
-    rgba(12, 11, 9, 0.9) 100%
+    170deg,
+    rgba(14, 22, 38, 0.4) 0%,
+    rgba(14, 22, 38, 0.68) 55%,
+    rgba(9, 15, 27, 0.92) 100%
   );
-  --shadow-card: 0 24px 64px rgba(0, 0, 0, 0.4);
-  --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.3);
-  --color-scroll-thumb: #2A2622;
-  --color-img-placeholder: #1A1815;
-  --color-btn-primary-bg: #EDE8DF;
-  --color-btn-primary-text: #0C0B09;
+  --shadow-card: 0 24px 64px rgba(0, 0, 0, 0.5);
+  --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.35);
+  --color-scroll-thumb: #2A3654;
+  --color-img-placeholder: #16203A;
+  --color-btn-primary-bg: #E7E0D0;
+  --color-btn-primary-text: #0E1626;
 }
 
 /* ═══════════════════════════════════════════════
@@ -79,11 +95,55 @@ html {
 body {
   background: var(--color-bg);
   color: var(--color-dark);
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1),
               color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ═══════════════════════════════════════════════
+   Lenis smooth scroll (see SmoothScroll.tsx)
+   ═══════════════════════════════════════════════ */
+
+.lenis,
+.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* ═══════════════════════════════════════════════
+   Custom cursor (see CustomCursor.tsx)
+   ═══════════════════════════════════════════════ */
+
+.tuli-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--color-gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: width 0.35s cubic-bezier(0.19, 1, 0.22, 1),
+              height 0.35s cubic-bezier(0.19, 1, 0.22, 1),
+              background-color 0.35s ease, border-color 0.35s ease, opacity 0.4s ease;
+  will-change: transform;
+}
+.tuli-cursor.is-hover {
+  width: 54px;
+  height: 54px;
+  background: rgba(176, 124, 52, 0.12);
+  border-color: rgba(176, 124, 52, 0.5);
+}
+@media (hover: none), (pointer: coarse) {
+  .tuli-cursor { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tuli-cursor { display: none; }
 }
 
 ::selection {
@@ -205,8 +265,161 @@ select {
 }
 
 /* ═══════════════════════════════════════════════
+   Featured — Editorial Rows (homepage)
+   ═══════════════════════════════════════════════ */
+
+.tuli-feature-section { padding: 80px 40px 120px; background: var(--color-bg); }
+.tuli-feature-head {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  gap: 16px; flex-wrap: wrap; padding-bottom: 32px; margin-bottom: 72px;
+  border-bottom: 1px solid var(--color-divider);
+}
+.tuli-feature-title {
+  font-family: var(--font-cormorant, "Bodoni Moda", serif); font-weight: 400;
+  color: var(--color-dark); letter-spacing: -0.01em; line-height: 1.05;
+  font-size: clamp(30px, 4vw, 50px); margin-top: 10px; text-wrap: balance;
+}
+.tuli-feature-viewall {
+  font-family: var(--font-karla, sans-serif); font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; font-weight: 600; color: var(--color-mid);
+  text-decoration: none; border-bottom: 1px solid var(--color-gold);
+  padding-bottom: 4px; white-space: nowrap; transition: color 0.3s ease;
+}
+.tuli-feature-viewall:hover { color: var(--color-gold); }
+
+.tuli-feature-rows { display: flex; flex-direction: column; gap: 112px; }
+.tuli-feature-row {
+  display: grid; grid-template-columns: 1.12fr 0.88fr; gap: 64px; align-items: center;
+}
+.tuli-feature-row--reverse .tuli-feature-media { order: 2; }
+.tuli-feature-media { position: relative; display: block; overflow: hidden; text-decoration: none; }
+.tuli-feature-img {
+  width: 100%; aspect-ratio: 4 / 5; background-size: cover; background-position: center;
+}
+.tuli-feature-cap {
+  position: absolute; top: 18px; left: 20px; z-index: 2; display: flex; gap: 10px;
+  align-items: baseline; text-shadow: 0 1px 14px rgba(0, 0, 0, 0.55);
+}
+.tuli-feature-no { font-family: var(--font-cormorant, serif); font-size: 15px; color: #EAD9AE; }
+.tuli-feature-craft {
+  font-family: var(--font-karla, sans-serif); font-size: 9.5px; letter-spacing: 0.2em;
+  text-transform: uppercase; font-weight: 700; color: rgba(255, 255, 255, 0.92);
+}
+.tuli-feature-tags { position: absolute; top: 16px; right: 16px; z-index: 2; display: flex; gap: 8px; }
+.tuli-feature-body-craft {
+  font-family: var(--font-karla, sans-serif); font-size: 10.5px; letter-spacing: 0.22em;
+  text-transform: uppercase; font-weight: 700; color: var(--color-gold);
+}
+.tuli-feature-name {
+  font-family: var(--font-cormorant, "Bodoni Moda", serif); font-weight: 400;
+  color: var(--color-dark); font-size: clamp(28px, 3.2vw, 44px); line-height: 1.04;
+  letter-spacing: -0.01em; margin: 16px 0 6px; text-wrap: balance;
+}
+.tuli-feature-by {
+  font-family: var(--font-cormorant, serif); font-style: italic; font-size: 17px; color: var(--color-mid);
+}
+.tuli-feature-desc {
+  font-family: var(--font-karla, sans-serif); color: var(--color-mid); font-size: 15px;
+  line-height: 1.8; max-width: 46ch; margin: 20px 0 26px;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.tuli-feature-price { display: flex; align-items: baseline; gap: 12px; }
+.tuli-feature-price .now {
+  font-family: var(--font-karla, sans-serif); font-size: 19px; font-weight: 600;
+  color: var(--color-dark); font-variant-numeric: tabular-nums;
+}
+.tuli-feature-price .was {
+  font-family: var(--font-karla, sans-serif); font-size: 14px; color: var(--color-light);
+  text-decoration: line-through; font-variant-numeric: tabular-nums;
+}
+.tuli-feature-cta {
+  margin-top: 28px; display: inline-block; font-family: var(--font-karla, sans-serif);
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
+  color: var(--color-dark); border-bottom: 1px solid var(--color-dark); padding-bottom: 6px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+.tuli-feature-cta:hover { color: var(--color-gold); border-color: var(--color-gold); }
+
+/* ═══════════════════════════════════════════════
+   Artisan Spotlight (homepage)
+   ═══════════════════════════════════════════════ */
+
+.tuli-art-section { padding: 120px 40px; background: var(--color-bg-alt); }
+.tuli-art-head { max-width: 1280px; margin: 0 auto 72px; text-align: center; }
+.tuli-art-title {
+  font-family: var(--font-cormorant, "Bodoni Moda", serif); font-weight: 400;
+  color: var(--color-dark); letter-spacing: -0.01em; line-height: 1.05;
+  font-size: clamp(30px, 4vw, 50px); margin-top: 12px; text-wrap: balance;
+}
+.tuli-art-spread {
+  max-width: 1280px; margin: 0 auto 84px; display: grid;
+  grid-template-columns: 1fr 1.05fr; gap: 56px; align-items: center;
+}
+.tuli-art-spread-media { position: relative; display: block; overflow: hidden; }
+.tuli-art-spread-img { width: 100%; aspect-ratio: 4 / 5; background-size: cover; background-position: center; }
+.tuli-art-spread-craft {
+  font-family: var(--font-karla, sans-serif); font-size: 10.5px; letter-spacing: 0.22em;
+  text-transform: uppercase; font-weight: 700; color: var(--color-gold);
+}
+.tuli-art-spread-quote {
+  font-family: var(--font-cormorant, "Bodoni Moda", serif); font-weight: 400; font-style: italic;
+  color: var(--color-dark); font-size: clamp(26px, 3.2vw, 40px); line-height: 1.22;
+  letter-spacing: -0.01em; margin: 18px 0 24px; text-wrap: balance;
+}
+.tuli-art-spread-bio {
+  font-family: var(--font-karla, sans-serif); color: var(--color-mid); font-size: 15px;
+  line-height: 1.8; max-width: 48ch;
+}
+.tuli-art-spread-meta { display: flex; gap: 44px; margin: 34px 0 30px; flex-wrap: wrap; }
+.tuli-art-spread-meta .n { font-family: var(--font-cormorant, serif); font-size: 38px; line-height: 1; color: var(--color-gold); }
+.tuli-art-spread-meta .l {
+  font-family: var(--font-karla, sans-serif); font-size: 10px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--color-light); margin-top: 8px;
+}
+.tuli-art-link {
+  font-family: var(--font-karla, sans-serif); font-size: 11px; letter-spacing: 0.18em;
+  text-transform: uppercase; font-weight: 600; color: var(--color-dark);
+  border-bottom: 1px solid var(--color-gold); padding-bottom: 6px; display: inline-block;
+}
+.tuli-art-grid {
+  max-width: 1280px; margin: 0 auto; display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 48px 40px;
+}
+.tuli-art-card { display: block; text-decoration: none; }
+.tuli-art-card-media { position: relative; overflow: hidden; display: block; }
+.tuli-art-card-img { width: 100%; aspect-ratio: 4 / 5; background-size: cover; background-position: center; }
+.tuli-art-card-body { padding-top: 20px; }
+.tuli-art-card-name {
+  font-family: var(--font-cormorant, "Bodoni Moda", serif); font-weight: 400;
+  color: var(--color-dark); font-size: 25px; letter-spacing: -0.01em; margin: 12px 0 4px;
+}
+.tuli-art-card-region {
+  font-family: var(--font-karla, sans-serif); font-size: 12px; letter-spacing: 0.04em;
+  color: var(--color-gold); margin-bottom: 14px;
+}
+.tuli-art-card-bio {
+  font-family: var(--font-karla, sans-serif); font-size: 14px; color: var(--color-mid); line-height: 1.75;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════════
    Responsive
    ═══════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .tuli-feature-row { gap: 40px; }
+  .tuli-feature-rows { gap: 90px; }
+  .tuli-art-spread { gap: 40px; }
+}
+
+@media (max-width: 900px) {
+  .tuli-feature-row { grid-template-columns: 1fr; gap: 26px; }
+  .tuli-feature-row--reverse .tuli-feature-media { order: 0; }
+  .tuli-feature-img { aspect-ratio: 16 / 11; }
+  .tuli-art-spread { grid-template-columns: 1fr; gap: 32px; }
+  .tuli-art-spread-media { order: -1; }
+  .tuli-art-spread-img { aspect-ratio: 16 / 11; }
+}
 
 @media (max-width: 768px) {
   .tuli-desktop-nav {
@@ -229,4 +442,23 @@ select {
     grid-template-columns: 1fr !important;
     padding: 88px 32px 68px !important;
   }
+  .tuli-hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .tuli-hero-index {
+    display: none !important;
+  }
+  .tuli-feature-section { padding: 56px 22px 80px; }
+  .tuli-feature-head { margin-bottom: 44px; padding-bottom: 24px; }
+  .tuli-feature-rows { gap: 64px; }
+  .tuli-feature-desc { -webkit-line-clamp: 4; margin: 16px 0 22px; }
+  .tuli-art-section { padding: 72px 22px; }
+  .tuli-art-head { margin-bottom: 44px; }
+  .tuli-art-spread { margin-bottom: 56px; }
+  .tuli-art-grid { gap: 40px 24px; }
+}
+
+@media (max-width: 480px) {
+  .tuli-feature-img,
+  .tuli-art-spread-img { aspect-ratio: 4 / 3; }
 }

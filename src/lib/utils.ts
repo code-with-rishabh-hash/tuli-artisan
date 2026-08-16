@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Tuli Artisan — Utility Functions
+// Tuli Artisan - Utility Functions
 // ═══════════════════════════════════════════════
 
 /** Format price in Indian Rupee locale */

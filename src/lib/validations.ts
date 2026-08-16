@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Tuli Artisan — Input Validation
+// Tuli Artisan - Input Validation
 // ═══════════════════════════════════════════════
 
 export function validateEmail(email: string): string | null {

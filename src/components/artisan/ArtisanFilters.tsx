@@ -3,7 +3,6 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
-import { HoverImg } from "@/components/ui/HoverImg";
 import { CraftBadge } from "@/components/ui/CraftBadge";
 import { EASE_HOVER } from "@/lib/constants";
 import type { Artisan } from "@/types";
@@ -132,7 +131,7 @@ export default function ArtisanFilters({ artisans, crafts, states }: ArtisanFilt
         </div>
       ) : (
         <>
-          {/* Hero Card — Featured Artisan */}
+          {/* Hero Card - Featured Artisan */}
           {hero && (
             <Reveal>
               <Link
@@ -191,64 +190,39 @@ export default function ArtisanFilters({ artisans, crafts, states }: ArtisanFilt
             </Reveal>
           )}
 
-          {/* Magazine Grid — Remaining Artisans */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(380px, 1fr))",
-              gap: 40,
-            }}
-          >
+          {/* Magazine Grid - Remaining Artisans */}
+          <div className="tuli-art-grid">
             {rest.map((a, i) => (
               <Reveal key={a.id} delay={i * 0.08}>
-                <Link
-                  href={`/artisan/${a.slug}`}
-                  style={{
-                    display: "block",
-                    textDecoration: "none",
-                    transition: "transform 0.4s ease",
-                  }}
-                  className="tuli-card-hover"
-                >
-                  <HoverImg src={a.image} alt={a.name} aspect="4/5" />
-                  <div style={{ padding: "20px 0" }}>
+                <Link href={`/artisan/${a.slug}`} className="tuli-art-card tuli-zoom-parent">
+                  <div className="tuli-art-card-media">
+                    <div
+                      className="tuli-zoom-img tuli-art-card-img"
+                      style={{ backgroundImage: `url(${a.image})` }}
+                    />
+                  </div>
+                  <div className="tuli-art-card-body">
                     <CraftBadge craft={a.craft} />
-                    <h3
-                      style={{
-                        fontFamily: "var(--font-cormorant)",
-                        fontSize: 26,
-                        fontWeight: 300,
-                        color: "var(--color-dark)",
-                        letterSpacing: "-0.02em",
-                        margin: "12px 0 6px",
-                      }}
-                    >
-                      {a.name}
-                    </h3>
-                    <p style={{ fontFamily: "var(--font-karla)", fontSize: 12, color: "var(--color-gold)", marginBottom: 14 }}>
+                    <h3 className="tuli-art-card-name">{a.name}</h3>
+                    <p className="tuli-art-card-region">
                       {a.region} &middot; {a.yearsOfPractice} years
                     </p>
-                    <p
+                    <p className="tuli-art-card-bio">{a.bio}</p>
+                    <div
                       style={{
-                        fontFamily: "var(--font-karla)",
-                        fontSize: 14,
-                        color: "var(--color-mid)",
-                        lineHeight: 1.75,
-                        marginBottom: 16,
+                        width: 24,
+                        height: 1,
+                        background: "var(--color-gold)",
+                        margin: "18px 0 14px",
                       }}
-                    >
-                      {a.bio}
-                    </p>
+                    />
                     <p
                       style={{
-                        fontFamily: "var(--font-cormorant)",
+                        fontFamily: 'var(--font-cormorant, "Bodoni Moda", serif)',
                         fontSize: 16,
-                        fontWeight: 300,
                         fontStyle: "italic",
                         color: "var(--color-light)",
-                        lineHeight: 1.6,
-                        borderLeft: "2px solid var(--color-gold)",
-                        paddingLeft: 16,
+                        lineHeight: 1.55,
                       }}
                     >
                       &ldquo;{a.quote}&rdquo;

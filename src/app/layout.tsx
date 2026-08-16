@@ -1,19 +1,24 @@
 import { cookies } from "next/headers";
-import { Cormorant_Garamond, Karla } from "next/font/google";
+import { Bodoni_Moda, Karla } from "next/font/google";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/context/AuthProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { GrainOverlay } from "@/components/ui/GrainOverlay";
+import { SmoothScroll } from "@/components/ui/SmoothScroll";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 import { THEME_COOKIE_NAME } from "@/lib/theme";
 import type { Theme } from "@/lib/theme";
 import type { Metadata } from "next";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+// Display face: high-contrast Bodoni (the "Indigo Archive" fashion-serif direction).
+// Kept under the --font-cormorant variable name so all existing serif usages
+// pick it up without touching 30+ component files.
+const cormorant = Bodoni_Moda({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   variable: "--font-cormorant",
   display: "swap",
@@ -28,7 +33,7 @@ const karla = Karla({
 
 export const metadata: Metadata = {
   title: {
-    default: "Tuli Artisan \u2014 Handcrafted by India\u2019s Finest",
+    default: "Tuli Artisan \u00b7 Handcrafted by India\u2019s Finest",
     template: "%s | Tuli Artisan",
   },
   description:
@@ -61,6 +66,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <AuthProvider>
           <ThemeProvider initialTheme={theme}>
             <CartProvider>
+              <SmoothScroll />
+              <CustomCursor />
               <GrainOverlay />
               <Navbar />
               {children}

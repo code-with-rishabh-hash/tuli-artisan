@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Tuli Artisan — Type Definitions
+// Tuli Artisan - Type Definitions
 // ═══════════════════════════════════════════════
 
 export type CraftType =

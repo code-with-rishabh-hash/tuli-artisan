@@ -110,7 +110,7 @@ export default function CheckoutForm({ addresses, isLoggedIn, userEmail, isDemo 
     setProcessing(true);
     setError("");
 
-    // Demo mode — simulate a successful order
+    // Demo mode - simulate a successful order
     if (isDemo) {
       await new Promise((resolve) => setTimeout(resolve, 1500));
       clearCart();

@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Tuli Artisan — Data Access Layer
+// Tuli Artisan - Data Access Layer
 // Uses Prisma when DATABASE_URL is set, otherwise falls back to mock data
 // ═══════════════════════════════════════════════
 

@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Tuli Artisan — Authentication Configuration
+// Tuli Artisan - Authentication Configuration
 // NextAuth.js v5 (Auth.js) with Credentials + OAuth
 // In demo mode (no DATABASE_URL), auth returns null session
 // ═══════════════════════════════════════════════
@@ -68,7 +68,7 @@ async function getAuthInstance() {
   return _authInstance;
 }
 
-// Exported functions — in demo mode, return no-ops
+// Exported functions - in demo mode, return no-ops
 
 export async function auth(): Promise<AuthResult> {
   if (IS_DEMO) return null;

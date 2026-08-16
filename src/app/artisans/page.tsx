@@ -26,7 +26,7 @@ export default async function ArtisansPage() {
             <h1
               style={{
                 fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
-                fontWeight: 200,
+                fontWeight: 400,
                 color: "var(--color-dark)",
                 letterSpacing: "-0.02em",
                 lineHeight: 1.1,
@@ -46,8 +46,8 @@ export default async function ArtisansPage() {
                 margin: "18px auto 0",
               }}
             >
-              Every piece is created by a master craftsperson &mdash; someone who has dedicated
-              their life to preserving ancient techniques.
+              Every piece is created by a master craftsperson, someone who has devoted a lifetime
+              to preserving techniques the modern world has forgotten.
             </p>
           </div>
         </Reveal>

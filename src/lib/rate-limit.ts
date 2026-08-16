@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Tuli Artisan — In-Memory Rate Limiter
+// Tuli Artisan - In-Memory Rate Limiter
 // For production, replace with Redis-backed solution
 // ═══════════════════════════════════════════════
 

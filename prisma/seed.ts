@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 // ═══════════════════════════════════════════════
-// Tuli Artisan — Seed Data
+// Tuli Artisan - Seed Data
 // ═══════════════════════════════════════════════
 
 const IMAGES = {
@@ -88,7 +88,7 @@ async function main() {
         region: "Moradabad, Uttar Pradesh",
         state: "Uttar Pradesh",
         bio: "Master metalsmith creating contemporary vessels using ancient lost-wax casting methods passed down through five generations.",
-        story: "In the narrow lanes of Moradabad, known as Peetal Nagri \u2014 the City of Brass \u2014 Rajan\u2019s workshop hums with the rhythm of hammers on metal. Each vessel begins as a wax model, hand-sculpted, then encased in clay. When the mold is fired, the wax melts away, leaving space for molten brass to fill. No two pieces are ever identical.",
+        story: "In the narrow lanes of Moradabad, known as Peetal Nagri, the City of Brass, Rajan\u2019s workshop hums with the rhythm of hammers on metal. Each vessel begins as a wax model, hand-sculpted, then encased in clay. When the mold is fired, the wax melts away, leaving space for molten brass to fill. No two pieces are ever identical.",
         quote: "Brass remembers the hand that shaped it. That memory lives in every curve.",
         yearsOfPractice: 35,
         image: IMAGES.artisan2,
@@ -102,7 +102,7 @@ async function main() {
         region: "Pochampally, Telangana",
         state: "Telangana",
         bio: "Ikat weaving master creating mesmerizing geometric patterns through resist-dyeing threads before they meet the loom.",
-        story: "The click-clack of Lakshmi\u2019s loom begins before dawn and continues well past dusk. Pochampally Ikat \u2014 a UNESCO heritage craft \u2014 demands extraordinary precision: each thread is tied and dyed in exact patterns before weaving begins. A single saree can take three weeks. Lakshmi\u2019s patterns draw from temple architecture and the geometry of rice paddies.",
+        story: "The click-clack of Lakshmi\u2019s loom begins before dawn and continues well past dusk. Pochampally Ikat, a UNESCO heritage craft, demands extraordinary precision: each thread is tied and dyed in exact patterns before weaving begins. A single saree can take three weeks. Lakshmi\u2019s patterns draw from temple architecture and the geometry of rice paddies.",
         quote: "The loom is my language. Every thread is a word, every pattern a story only cloth can tell.",
         yearsOfPractice: 40,
         image: IMAGES.artisan3,
@@ -117,7 +117,7 @@ async function main() {
         state: "Uttar Pradesh",
         bio: "Fourth-generation potter blending Mughal-era glazing techniques with modern minimalist forms.",
         story: "Arjun\u2019s hands have known clay since childhood. In Khurja, a town synonymous with Indian ceramics, his family has shaped vessels for four generations. He fires each piece in a traditional wood kiln, where temperatures above 1200\u00B0C transform raw earth into lustrous stoneware. His signature blue-white glaze echoes the tiles of Mughal monuments.",
-        quote: "Clay is the most honest material. It shows everything \u2014 your patience, your breath, even your doubts.",
+        quote: "Clay is the most honest material. It shows everything: your patience, your breath, even your doubts.",
         yearsOfPractice: 22,
         image: IMAGES.artisan4,
       },
@@ -130,7 +130,7 @@ async function main() {
         region: "Lucknow, Uttar Pradesh",
         state: "Uttar Pradesh",
         bio: "Chikankari embroidery artisan whose needlework preserves the delicate white-on-white tradition of Mughal courts.",
-        story: "Fatima\u2019s fingers move like a dancer\u2019s \u2014 precise, rhythmic, unhurried. Chikankari, Lucknow\u2019s signature embroidery, involves 36 distinct stitches, each with a poetic name. Her grandmother stitched for nawabs; Fatima now creates for a global audience while training the next generation in her workshop of twenty women.",
+        story: "Fatima\u2019s fingers move like a dancer\u2019s: precise, rhythmic, unhurried. Chikankari, Lucknow\u2019s signature embroidery, involves 36 distinct stitches, each with a poetic name. Her grandmother stitched for nawabs; Fatima now creates for a global audience while training the next generation in her workshop of twenty women.",
         quote: "In Chikankari, you don\u2019t count hours. You count stitches. And each one must be worthy.",
         yearsOfPractice: 30,
         image: IMAGES.artisan5,
@@ -144,7 +144,7 @@ async function main() {
         region: "Saharanpur, Uttar Pradesh",
         state: "Uttar Pradesh",
         bio: "Master woodcarver transforming sheesham and walnut into intricate jali screens and decorative panels.",
-        story: "The Suthar community has carved wood in Saharanpur for centuries. Devendra\u2019s workshop, tucked behind the old bazaar, smells of fresh sheesham shavings. He works without power tools, using only hand chisels and gouges inherited from his father. His jali screens \u2014 lattice panels with geometric cutwork \u2014 filter light the way Mughal architects intended.",
+        story: "The Suthar community has carved wood in Saharanpur for centuries. Devendra\u2019s workshop, tucked behind the old bazaar, smells of fresh sheesham shavings. He works without power tools, using only hand chisels and gouges inherited from his father. His jali screens, lattice panels with geometric cutwork, filter light the way Mughal architects intended.",
         quote: "Wood has memory. If you force it, it splits. If you follow its grain, it becomes art.",
         yearsOfPractice: 25,
         image: IMAGES.artisan6,
@@ -158,7 +158,7 @@ async function main() {
         region: "Srinagar, Jammu & Kashmir",
         state: "Jammu & Kashmir",
         bio: "Papier-m\u00E2ch\u00E9 painter preserving Kashmir\u2019s centuries-old tradition of transforming paper pulp into gilded art objects.",
-        story: "In the shadow of Dal Lake, Zahira paints with a squirrel-hair brush so fine it holds a single drop of pigment. Kashmiri papier-m\u00E2ch\u00E9 begins with soaked paper pounded into pulp, shaped over wooden molds, then coated with layers of gesso before the painting begins. Her designs \u2014 chinar leaves, paisley, Persian flowers \u2014 are applied in up to twenty layers of natural pigment and gold leaf.",
+        story: "In the shadow of Dal Lake, Zahira paints with a squirrel-hair brush so fine it holds a single drop of pigment. Kashmiri papier-m\u00E2ch\u00E9 begins with soaked paper pounded into pulp, shaped over wooden molds, then coated with layers of gesso before the painting begins. Her designs, chinar leaves, paisley, Persian flowers, are applied in up to twenty layers of natural pigment and gold leaf.",
         quote: "Kashmir taught me that beauty takes patience. Twenty layers of paint, twenty seasons of practice.",
         yearsOfPractice: 18,
         image: IMAGES.artisan7,
@@ -172,7 +172,7 @@ async function main() {
         region: "Mahabalipuram, Tamil Nadu",
         state: "Tamil Nadu",
         bio: "Temple stone carver whose family has sculpted granite since the Pallava dynasty, creating contemporary pieces rooted in ancient tradition.",
-        story: "Mahabalipuram\u2019s shore temples were carved from living rock. Selvam\u2019s ancestors were among those sculptors. Today, he works in the same granite, using techniques unchanged for 1,400 years. Each strike of his chisel is deliberate \u2014 stone forgives nothing. His contemporary pieces carry temple geometry into modern homes.",
+        story: "Mahabalipuram\u2019s shore temples were carved from living rock. Selvam\u2019s ancestors were among those sculptors. Today, he works in the same granite, using techniques unchanged for 1,400 years. Each strike of his chisel is deliberate. Stone forgives nothing. His contemporary pieces carry temple geometry into modern homes.",
         quote: "Stone is eternal. When I carve, I\u2019m having a conversation with something older than civilization.",
         yearsOfPractice: 32,
         image: IMAGES.artisan8,
@@ -186,7 +186,7 @@ async function main() {
         region: "Agartala, Tripura",
         state: "Tripura",
         bio: "Bamboo weaver creating contemporary home decor from the versatile grass that sustains Northeast India\u2019s craft traditions.",
-        story: "In Tripura, bamboo is not just material \u2014 it\u2019s culture. Priya learned to split and weave bamboo from her mother, who learned from hers. She has modernized traditional forms: her lampshades, baskets, and room dividers bring bamboo\u2019s warmth into urban spaces. Each piece is woven from locally harvested bamboo, treated naturally with neem oil.",
+        story: "In Tripura, bamboo is not just material. It\u2019s culture. Priya learned to split and weave bamboo from her mother, who learned from hers. She has modernized traditional forms: her lampshades, baskets, and room dividers bring bamboo\u2019s warmth into urban spaces. Each piece is woven from locally harvested bamboo, treated naturally with neem oil.",
         quote: "Bamboo bends but never breaks. That resilience is what makes it beautiful.",
         yearsOfPractice: 15,
         image: IMAGES.artisan9,
@@ -200,8 +200,8 @@ async function main() {
         region: "Shantiniketan, West Bengal",
         state: "West Bengal",
         bio: "Artisan leather worker carrying forward the Shantiniketan tradition of batik-printed leather goods first introduced at Tagore\u2019s university.",
-        story: "Shantiniketan leather is unique in India \u2014 a craft born from the artistic vision of Rabindranath Tagore\u2019s university. Nandini uses vegetable-tanned goat leather, embossed and painted with motifs inspired by Bengali folk art. Each bag, journal, and accessory carries the distinctive earth tones and hand-painted designs that make this craft unmistakable.",
-        quote: "Tagore believed art should be part of daily life. That\u2019s what I try to create \u2014 art you can carry.",
+        story: "Shantiniketan leather is unique in India, a craft born from the artistic vision of Rabindranath Tagore\u2019s university. Nandini uses vegetable-tanned goat leather, embossed and painted with motifs inspired by Bengali folk art. Each bag, journal, and accessory carries the distinctive earth tones and hand-painted designs that make this craft unmistakable.",
+        quote: "Tagore believed art should be part of daily life. That\u2019s what I try to create: art you can carry.",
         yearsOfPractice: 20,
         image: IMAGES.artisan10,
       },
@@ -214,7 +214,7 @@ async function main() {
         region: "Kutch, Gujarat",
         state: "Gujarat",
         bio: "Kutchi potter creating rustic terracotta vessels and ritual objects using techniques passed down through the Prajapati community.",
-        story: "The Rann of Kutch stretches to the horizon like a white desert, and from this austere landscape comes pottery of remarkable warmth. Ramesh\u2019s terracotta \u2014 unglazed, sun-baked, sometimes painted with white lime patterns \u2014 carries the simplicity of nomadic life. His water jugs keep water cool in 45\u00B0C summers, just as they have for centuries.",
+        story: "The Rann of Kutch stretches to the horizon like a white desert, and from this austere landscape comes pottery of remarkable warmth. Ramesh\u2019s terracotta, unglazed, sun-baked, sometimes painted with white lime patterns, carries the simplicity of nomadic life. His water jugs keep water cool in 45\u00B0C summers, just as they have for centuries.",
         quote: "The earth gives freely. The potter\u2019s only job is to listen to what the clay wants to become.",
         yearsOfPractice: 38,
         image: IMAGES.artisan11,
@@ -277,7 +277,7 @@ async function main() {
         craft: "Brass Metalwork",
         price: 3200,
         originalPrice: null,
-        description: "A set of three hand-cast brass diyas with lotus petal bases. Created using the lost-wax method \u2014 each lamp is unique, carrying the subtle textures of hand-sculpted wax originals.",
+        description: "A set of three hand-cast brass diyas with lotus petal bases. Created using the lost-wax method, so each lamp is unique, carrying the subtle textures of hand-sculpted wax originals.",
         details: JSON.stringify(["Set of 3 diyas", "Pure brass, lost-wax cast", "Heights: 6cm, 8cm, 10cm", "Hand-polished satin finish", "Develops a living patina over time"]),
         careInstructions: "Clean with lemon and salt for brightness, or let natural patina develop.",
         timeToCreate: "5\u20137 days",
@@ -295,7 +295,7 @@ async function main() {
         craft: "Brass Metalwork",
         price: 4800,
         originalPrice: 5500,
-        description: "A sculptural brass vase with a hammered rain-texture finish. The surface is created by thousands of individual hammer strikes, each catching light differently \u2014 like rain on still water.",
+        description: "A sculptural brass vase with a hammered rain-texture finish. The surface is created by thousands of individual hammer strikes, each catching light differently, like rain on still water.",
         details: JSON.stringify(["Pure brass, hand-hammered", "Height: 24cm, Diameter: 12cm", "Watertight for fresh flowers", "4 days of hammering", "Signed by artisan"]),
         careInstructions: "Wipe with soft dry cloth. Water spots add to the rain aesthetic.",
         timeToCreate: "4 days",
@@ -313,7 +313,7 @@ async function main() {
         craft: "Handloom Weaving",
         price: 5600,
         originalPrice: null,
-        description: "A generous throw blanket woven in the Pochampally double-ikat technique \u2014 where both warp and weft threads are resist-dyed before weaving. The geometric pattern floats between layers of midnight blue and cream.",
+        description: "A generous throw blanket woven in the Pochampally double-ikat technique, where both warp and weft threads are resist-dyed before weaving. The geometric pattern floats between layers of midnight blue and cream.",
         details: JSON.stringify(["100% handloom cotton", "Double-ikat technique", "200cm \u00D7 150cm", "Natural dyes", "UNESCO Heritage craft"]),
         careInstructions: "Dry clean recommended for first wash. Subsequently, gentle hand wash in cold water.",
         timeToCreate: "15\u201321 days",
@@ -331,7 +331,7 @@ async function main() {
         craft: "Handloom Weaving",
         price: 8500,
         originalPrice: null,
-        description: "A masterwork saree featuring the \u2018temple steps\u2019 border pattern \u2014 inspired by the stepped architecture of South Indian gopurams. Woven in warm cream with burnt sienna borders.",
+        description: "A masterwork saree featuring the \u2018temple steps\u2019 border pattern, inspired by the stepped architecture of South Indian gopurams. Woven in warm cream with burnt sienna borders.",
         details: JSON.stringify(["Pure silk-cotton blend", "Single-ikat with supplementary weft borders", "5.5 meters with running blouse", "Temple steps & diamond motifs", "Certificate of authenticity"]),
         careInstructions: "Dry clean only. Store folded in muslin.",
         timeToCreate: "21\u201330 days",
@@ -342,7 +342,7 @@ async function main() {
       },
     }),
 
-    // New products — Pottery
+    // New products - Pottery
     prisma.product.create({
       data: {
         slug: "pt-001",
@@ -398,7 +398,7 @@ async function main() {
       },
     }),
 
-    // New products — Embroidery
+    // New products - Embroidery
     prisma.product.create({
       data: {
         slug: "em-001",
@@ -436,7 +436,7 @@ async function main() {
       },
     }),
 
-    // New products — Woodwork
+    // New products - Woodwork
     prisma.product.create({
       data: {
         slug: "ww-001",
@@ -463,7 +463,7 @@ async function main() {
         craft: "Woodwork",
         price: 2200,
         originalPrice: 2600,
-        description: "A masala dabba reimagined \u2014 a traditional spice box with seven compartments, each lid carved with a different botanical motif. Practical beauty for the everyday kitchen.",
+        description: "A masala dabba reimagined: a traditional spice box with seven compartments, each lid carved with a different botanical motif. Practical beauty for the everyday kitchen.",
         details: JSON.stringify(["Walnut wood", "Diameter: 20cm", "7 compartments with lids", "Botanical carvings", "Food-safe beeswax finish"]),
         careInstructions: "Wipe with damp cloth. Re-apply beeswax every 6 months.",
         timeToCreate: "5\u20137 days",
@@ -474,7 +474,7 @@ async function main() {
       },
     }),
 
-    // New products — Leather
+    // New products - Leather
     prisma.product.create({
       data: {
         slug: "lt-001",
@@ -512,7 +512,7 @@ async function main() {
       },
     }),
 
-    // New products — Papier-mache
+    // New products - Papier-mache
     prisma.product.create({
       data: {
         slug: "pm-001",
@@ -521,7 +521,7 @@ async function main() {
         craft: "Papier-mache",
         price: 3600,
         originalPrice: null,
-        description: "A jewelry box shaped and painted in the Kashmiri papier-m\u00E2ch\u00E9 tradition. The chinar leaf motif \u2014 Kashmir\u2019s iconic autumn symbol \u2014 is rendered in natural pigments with gold leaf accents.",
+        description: "A jewelry box shaped and painted in the Kashmiri papier-m\u00E2ch\u00E9 tradition. The chinar leaf motif, Kashmir\u2019s iconic autumn symbol, is rendered in natural pigments with gold leaf accents.",
         details: JSON.stringify(["Paper pulp over wooden form", "Hand-painted natural pigments", "22-karat gold leaf accents", "15cm \u00D7 10cm \u00D7 6cm", "Velvet-lined interior"]),
         careInstructions: "Handle gently. Dust with soft brush. Keep away from moisture.",
         timeToCreate: "12\u201318 days",
@@ -539,7 +539,7 @@ async function main() {
         craft: "Papier-mache",
         price: 5200,
         originalPrice: 5800,
-        description: "A tall decorative vase painted with intricate Persian garden scenes \u2014 birds, flowers, and flowing streams rendered in the distinctive Kashmiri style with real gold leaf borders.",
+        description: "A tall decorative vase painted with intricate Persian garden scenes: birds, flowers, and flowing streams rendered in the distinctive Kashmiri style with real gold leaf borders.",
         details: JSON.stringify(["Paper pulp construction", "Height: 30cm", "20+ layers of paint & lacquer", "Real gold leaf borders", "Signed by artist"]),
         careInstructions: "Display away from direct sunlight. Dust gently.",
         timeToCreate: "20\u201325 days",
@@ -550,7 +550,7 @@ async function main() {
       },
     }),
 
-    // New products — Stone Carving
+    // New products - Stone Carving
     prisma.product.create({
       data: {
         slug: "sc-001",
@@ -559,7 +559,7 @@ async function main() {
         craft: "Stone Carving",
         price: 4200,
         originalPrice: null,
-        description: "A pair of granite bookends carved with temple mandala patterns. The weight of stone meets the precision of sacred geometry \u2014 functional art that anchors any bookshelf.",
+        description: "A pair of granite bookends carved with temple mandala patterns. The weight of stone meets the precision of sacred geometry, functional art that anchors any bookshelf.",
         details: JSON.stringify(["Black granite", "Set of 2 bookends", "12cm \u00D7 10cm \u00D7 8cm each", "Temple mandala carving", "Felt base to protect surfaces"]),
         careInstructions: "Wipe with damp cloth. Stone requires no special care.",
         timeToCreate: "7\u201310 days",
@@ -570,7 +570,7 @@ async function main() {
       },
     }),
 
-    // New products — Bamboo Craft
+    // New products - Bamboo Craft
     prisma.product.create({
       data: {
         slug: "bc-001",
@@ -597,7 +597,7 @@ async function main() {
         craft: "Bamboo Craft",
         price: 1800,
         originalPrice: null,
-        description: "A nesting set of three storage baskets in graduated sizes. The tight herringbone weave is both beautiful and practical \u2014 sturdy enough for everyday use.",
+        description: "A nesting set of three storage baskets in graduated sizes. The tight herringbone weave is both beautiful and practical, sturdy enough for everyday use.",
         details: JSON.stringify(["Set of 3 nesting baskets", "Herringbone weave pattern", "Large: 30cm, Medium: 24cm, Small: 18cm", "Neem oil treated bamboo", "Cotton canvas liner"]),
         careInstructions: "Keep dry. Wipe with damp cloth if needed.",
         timeToCreate: "4\u20136 days",
@@ -617,7 +617,7 @@ async function main() {
         craft: "Block Printing",
         price: 4200,
         originalPrice: null,
-        description: "A queen-sized bedspread printed in the Ajrakh tradition \u2014 geometric star patterns using natural indigo and madder red. The double-sided print makes it reversible.",
+        description: "A queen-sized bedspread printed in the Ajrakh tradition: geometric star patterns using natural indigo and madder red. The double-sided print makes it reversible.",
         details: JSON.stringify(["100% cotton, 300 thread count", "220cm \u00D7 250cm", "Ajrakh double-sided print", "Natural indigo & madder", "Pre-washed for softness"]),
         careInstructions: "Machine wash cold. Colors deepen with each wash.",
         timeToCreate: "5\u20137 days",
@@ -671,9 +671,9 @@ async function main() {
         craft: "Pottery",
         price: 1800,
         originalPrice: 2100,
-        description: "A decorative planter in Jaipur\u2019s famous blue pottery style. Unlike traditional pottery, blue pottery uses no clay \u2014 it\u2019s made from quartz, glass, and gum, fired at low temperatures for a distinctive, lightweight result.",
+        description: "A decorative planter in Jaipur\u2019s famous blue pottery style. Unlike traditional pottery, blue pottery uses no clay. It\u2019s made from quartz, glass, and gum, fired at low temperatures for a distinctive, lightweight result.",
         details: JSON.stringify(["Quartz & glass composite", "Height: 18cm, Diameter: 15cm", "Hand-painted floral motifs", "Drainage hole included", "Indoor use recommended"]),
-        careInstructions: "Wipe clean. Handle with care \u2014 lighter than it looks.",
+        careInstructions: "Wipe clean. Handle with care, lighter than it looks.",
         timeToCreate: "4\u20136 days",
         tag: "New",
         colors: JSON.stringify(["Classic Blue & White", "Turquoise & White"]),
@@ -698,7 +698,7 @@ async function main() {
         slug: "monsoon-edit",
         title: "The Monsoon Edit",
         subtitle: "Rain-inspired indigos & earthy textures",
-        description: "A curated collection celebrating the poetry of the Indian monsoon \u2014 deep indigos, rain-washed greys, and the rich earth tones that emerge when the first drops meet dry soil.",
+        description: "A curated collection celebrating the poetry of the Indian monsoon: deep indigos, rain-washed greys, and the rich earth tones that emerge when the first drops meet dry soil.",
         season: "Monsoon 2026",
         color: "#1a3a4a",
         image: IMAGES.monsoon,
@@ -709,7 +709,7 @@ async function main() {
         slug: "first-light",
         title: "First Light",
         subtitle: "Dawn-inspired brass & warm textiles",
-        description: "Pieces that capture the golden warmth of early morning \u2014 hand-polished brass that catches light like sunrise, and textiles in saffron, turmeric, and soft cream.",
+        description: "Pieces that capture the golden warmth of early morning: hand-polished brass that catches light like sunrise, and textiles in saffron, turmeric, and soft cream.",
         season: "Spring 2026",
         color: "#8B6914",
         image: IMAGES.dawn,
@@ -720,7 +720,7 @@ async function main() {
         slug: "earth-altar",
         title: "Earth & Altar",
         subtitle: "Sacred geometry in everyday objects",
-        description: "Where devotion meets daily life. Temple-inspired patterns in brass, cloth, and natural dyes \u2014 objects that transform mundane rituals into moments of quiet reverence.",
+        description: "Where devotion meets daily life. Temple-inspired patterns in brass, cloth, and natural dyes: objects that transform mundane rituals into moments of quiet reverence.",
         season: "Year-round",
         color: "#5C3D2E",
         image: IMAGES.earth,
@@ -742,7 +742,7 @@ async function main() {
         slug: "heritage-luxe",
         title: "Heritage Luxe",
         subtitle: "Masterwork pieces for the discerning collector",
-        description: "Our most exquisite pieces \u2014 works that represent the pinnacle of their respective crafts. Each item is a testament to decades of mastery and centuries of tradition.",
+        description: "Our most exquisite pieces: works that represent the pinnacle of their respective crafts. Each item is a testament to decades of mastery and centuries of tradition.",
         season: "Collector\u2019s Edition",
         color: "#2D1F14",
         image: IMAGES.collection5,

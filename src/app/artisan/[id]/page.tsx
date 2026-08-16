@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getArtisan, getArtisans, getProductsByArtisan } from "@/lib/dal";
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Img } from "@/components/ui/Img";
 import { CraftBadge } from "@/components/ui/CraftBadge";
 import { Divider } from "@/components/ui/Divider";
@@ -21,7 +22,7 @@ export async function generateMetadata({
   const artisan = await getArtisan(id);
   if (!artisan) return { title: "Artisan Not Found" };
   return {
-    title: `${artisan.name} \u2014 ${artisan.craft}`,
+    title: `${artisan.name} \u00b7 ${artisan.craft}`,
     description: artisan.bio,
     openGraph: { images: [artisan.image] },
   };
@@ -45,10 +46,25 @@ export default async function ArtisanDetailPage({
 
   return (
     <div style={{ paddingTop: 0, background: "var(--color-bg)", minHeight: "100vh" }}>
-      <section style={{ background: "var(--color-dark-bg)" }}>
+      <section style={{ background: "var(--color-dark-bg)", position: "relative", overflow: "hidden" }}>
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 0,
+            backgroundImage: "var(--tex-buti)",
+            backgroundSize: "150px 150px",
+            opacity: 0.07,
+            mixBlendMode: "screen",
+            pointerEvents: "none",
+          }}
+        />
         <div
           className="tuli-artisan-hero"
           style={{
+            position: "relative",
+            zIndex: 1,
             maxWidth: 1280,
             margin: "0 auto",
             padding: "110px 32px 88px",
@@ -66,12 +82,12 @@ export default async function ArtisanDetailPage({
               <CraftBadge craft={artisan.craft} />
               <h1
                 style={{
-                  fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
-                  fontWeight: 200,
+                  fontFamily: 'var(--font-cormorant, "Bodoni Moda", serif)',
+                  fontWeight: 400,
                   color: "var(--color-text-on-dark)",
-                  letterSpacing: "-0.02em",
-                  lineHeight: 1.1,
-                  fontSize: "clamp(34px, 4.5vw, 54px)",
+                  letterSpacing: "-0.01em",
+                  lineHeight: 1.03,
+                  fontSize: "clamp(34px, 4.5vw, 56px)",
                   margin: "20px 0 8px",
                 }}
               >
@@ -101,12 +117,12 @@ export default async function ArtisanDetailPage({
               </p>
               <p
                 style={{
-                  fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
-                  fontWeight: 300,
+                  fontFamily: 'var(--font-cormorant, "Bodoni Moda", serif)',
+                  fontWeight: 400,
                   color: "var(--color-gold-highlight)",
-                  letterSpacing: "-0.02em",
-                  lineHeight: 1.65,
-                  fontSize: 20,
+                  letterSpacing: "-0.01em",
+                  lineHeight: 1.4,
+                  fontSize: "clamp(21px, 2.4vw, 27px)",
                   fontStyle: "italic",
                   marginTop: 40,
                 }}
@@ -119,19 +135,22 @@ export default async function ArtisanDetailPage({
       </section>
       <section style={{ maxWidth: 1280, margin: "0 auto", padding: "88px 32px 120px" }}>
         <Reveal>
-          <h2
-            style={{
-              fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
-              fontWeight: 300,
-              color: "var(--color-dark)",
-              letterSpacing: "-0.02em",
-              lineHeight: 1.1,
-              fontSize: 32,
-              marginBottom: 48,
-            }}
-          >
-            Pieces by {artisan.name}
-          </h2>
+          <div style={{ marginBottom: 48 }}>
+            <SectionLabel>The Collection</SectionLabel>
+            <h2
+              style={{
+                fontFamily: 'var(--font-cormorant, "Bodoni Moda", serif)',
+                fontWeight: 400,
+                color: "var(--color-dark)",
+                letterSpacing: "-0.01em",
+                lineHeight: 1.05,
+                fontSize: "clamp(28px, 3.4vw, 40px)",
+                marginTop: 10,
+              }}
+            >
+              Pieces by {artisan.name}
+            </h2>
+          </div>
         </Reveal>
         <ProductGrid products={artisanProducts} artisans={artisanMap} />
       </section>

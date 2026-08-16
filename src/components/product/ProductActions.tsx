@@ -35,7 +35,7 @@ export function ProductActions({ product }: ProductActionsProps) {
               display: "block",
             }}
           >
-            Color &mdash; {product.colors[selColor]}
+            Color · {product.colors[selColor]}
           </span>
           <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
             {product.colors.map((c, i) => (

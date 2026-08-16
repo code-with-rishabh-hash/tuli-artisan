@@ -34,7 +34,7 @@ function saveCart(cart: CartItem[]) {
   }
 }
 
-// Module-level singleton store — safe because CartProvider is mounted once in layout
+// Module-level singleton store - safe because CartProvider is mounted once in layout
 let cartData: CartItem[] = [];
 const listeners = new Set<() => void>();
 
