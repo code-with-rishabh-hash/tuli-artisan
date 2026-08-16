@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { MobileMenu } from "./MobileMenu";
 import { useCart } from "@/context/CartContext";
@@ -18,6 +19,7 @@ const NAV_LINKS = [
 export function Navbar() {
   const pathname = usePathname();
   const { cartCount } = useCart();
+  const { data: session } = useSession();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -29,11 +31,6 @@ export function Navbar() {
     window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
   }, []);
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
 
   const navTextColor = isTransparent ? "rgba(237,232,223,0.75)" : "var(--color-light)";
   const navActiveColor = isTransparent ? "var(--color-text-on-dark)" : "var(--color-dark)";
@@ -129,6 +126,49 @@ export function Navbar() {
           })}
 
           <ThemeToggle color={isTransparent ? "var(--color-text-on-dark)" : "var(--color-dark)"} />
+
+          <Link
+            href={session ? "/account" : "/login"}
+            style={{
+              fontFamily: 'var(--font-karla, "Karla", sans-serif)',
+              fontSize: "10px",
+              letterSpacing: "2px",
+              textTransform: "uppercase",
+              fontWeight: 600,
+              textDecoration: "none",
+              color: navTextColor,
+              transition: `color 0.4s ${EASE_HOVER}`,
+              display: "flex",
+              alignItems: "center",
+              gap: 6,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = navActiveColor;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = navTextColor;
+            }}
+          >
+            {session ? (
+              <>
+                {session.user?.image ? (
+                  <img
+                    src={session.user.image}
+                    alt=""
+                    style={{ width: 22, height: 22, borderRadius: "50%", objectFit: "cover" }}
+                  />
+                ) : (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M4 21v-1a6 6 0 0112 0v1" />
+                  </svg>
+                )}
+                Account
+              </>
+            ) : (
+              "Sign In"
+            )}
+          </Link>
 
           <Link
             href="/cart"

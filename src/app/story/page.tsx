@@ -8,7 +8,7 @@ import { Img } from "@/components/ui/Img";
 export const metadata: Metadata = {
   title: "Our Story",
   description:
-    "Tuli was born from a simple revelation: extraordinary craftsmanship exists in India's villages, yet remains invisible.",
+    "Tuli was born from a simple truth: some of the world's most extraordinary craftsmanship lives in India, yet its makers remain unseen.",
 };
 
 const PRINCIPLES = [
@@ -22,7 +22,7 @@ const PRINCIPLES = [
   },
   {
     title: "Story First",
-    text: "Every product page tells the human story \u2014 because context transforms an object into a treasure.",
+    text: "Every product page tells the human story behind the object, because context is what turns a possession into a treasure.",
   },
   {
     title: "Living Heritage",
@@ -41,7 +41,7 @@ export default function StoryPage() {
             <h1
               style={{
                 fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
-                fontWeight: 200,
+                fontWeight: 400,
                 color: "var(--color-dark)",
                 letterSpacing: "-0.02em",
                 lineHeight: 1.1,
@@ -69,15 +69,15 @@ export default function StoryPage() {
             }}
           >
             <p style={{ marginBottom: 30 }}>
-              Tuli was born from a simple revelation: some of the world&apos;s most extraordinary
-              craftsmanship exists in India&apos;s villages, workshops, and homes &mdash; yet the
-              artisans behind these marvels remain invisible to the people who would treasure their
-              work most.
+              Tuli was born from a simple truth. Some of the world&apos;s most extraordinary
+              craftsmanship lives in the workshops, studios, and homes of India, yet the artisans
+              behind these marvels remain invisible to the very people who would treasure their work
+              most.
             </p>
             <p style={{ marginBottom: 30 }}>
-              We set out to change that. Not by building another marketplace, but by creating a space
-              where every product is a doorway into a story &mdash; of tradition, of patience, of
-              mastery earned over decades.
+              We set out to change that. Not by building another marketplace, but by creating a place
+              where every object is a doorway into a story: of tradition, of patience, of mastery
+              earned across decades.
             </p>
 
             <div
@@ -104,9 +104,9 @@ export default function StoryPage() {
             </div>
 
             <p style={{ marginTop: 52, marginBottom: 30 }}>
-              At Tuli, we work directly with artisan families &mdash; no middlemen, no factory
-              intermediaries. We pay fair prices upfront, not on commission. We tell their stories
-              with the depth and respect they deserve.
+              At Tuli, we work directly with artisan families. No middlemen. No factory
+              intermediaries. We pay fair prices upfront, never on commission, and we tell their
+              stories with the depth and respect they deserve.
             </p>
 
             <Img

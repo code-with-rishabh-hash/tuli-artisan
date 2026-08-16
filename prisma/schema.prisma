@@ -1,0 +1,237 @@
+// ═══════════════════════════════════════════════
+// Tuli Artisan — Database Schema
+// ═══════════════════════════════════════════════
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ──────────────────────────────
+// COMMERCE MODELS
+// ──────────────────────────────
+
+model Artisan {
+  id              String    @id @default(cuid())
+  slug            String    @unique
+  name            String
+  craft           String
+  region          String
+  state           String
+  bio             String
+  story           String
+  quote           String
+  yearsOfPractice Int
+  image           String
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  products        Product[]
+}
+
+model Product {
+  id               String              @id @default(cuid())
+  slug             String              @unique
+  name             String
+  artisanId        String
+  artisan          Artisan             @relation(fields: [artisanId], references: [id])
+  craft            String
+  price            Int
+  originalPrice    Int?
+  description      String
+  details          String
+  careInstructions String
+  timeToCreate     String
+  tag              String?
+  colors           String
+  inStock          Boolean             @default(true)
+  image            String
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
+  collections      CollectionProduct[]
+  orderItems       OrderItem[]
+  wishlistItems    WishlistItem[]
+
+  @@index([craft])
+  @@index([artisanId])
+  @@index([price])
+}
+
+model Collection {
+  id          String              @id @default(cuid())
+  slug        String              @unique
+  title       String
+  subtitle    String
+  description String
+  season      String
+  color       String
+  image       String
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  products    CollectionProduct[]
+}
+
+model CollectionProduct {
+  collectionId String
+  productId    String
+  sortOrder    Int        @default(0)
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  product      Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@id([collectionId, productId])
+}
+
+model Promotion {
+  id                 String  @id @default(cuid())
+  code               String? @unique
+  discount           Int?
+  type               String
+  description        String
+  applicableProducts String
+  active             Boolean @default(true)
+}
+
+// ──────────────────────────────
+// USER & AUTH MODELS
+// ──────────────────────────────
+
+model User {
+  id            String           @id @default(cuid())
+  email         String           @unique
+  emailVerified DateTime?
+  passwordHash  String?
+  name          String?
+  phone         String?
+  avatar        String?
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  accounts      Account[]
+  sessions      Session[]
+  addresses     Address[]
+  orders        Order[]
+  wishlist      WishlistItem[]
+  preferences   UserPreferences?
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Address {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  label     String   @default("Home")
+  name      String
+  line1     String
+  line2     String?
+  city      String
+  state     String
+  pincode   String
+  phone     String
+  isDefault Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  orders    Order[]
+
+  @@index([userId])
+}
+
+model UserPreferences {
+  id                 String  @id @default(cuid())
+  userId             String  @unique
+  user               User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  theme              String  @default("light")
+  emailNotifications Boolean @default(true)
+  smsNotifications   Boolean @default(false)
+}
+
+// ──────────────────────────────
+// ORDER & PAYMENT MODELS
+// ──────────────────────────────
+
+model Order {
+  id                String      @id @default(cuid())
+  orderNumber       String      @unique
+  userId            String?
+  user              User?       @relation(fields: [userId], references: [id])
+  addressId         String?
+  address           Address?    @relation(fields: [addressId], references: [id])
+  guestEmail        String?
+  guestName         String?
+  guestPhone        String?
+  guestAddress      String?
+  status            String      @default("pending")
+  subtotal          Int
+  shippingCost      Int         @default(0)
+  discount          Int         @default(0)
+  total             Int
+  promoCode         String?
+  razorpayOrderId   String?     @unique
+  razorpayPaymentId String?
+  paymentStatus     String      @default("pending")
+  paidAt            DateTime?
+  shippedAt         DateTime?
+  deliveredAt       DateTime?
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+  items             OrderItem[]
+
+  @@index([userId])
+  @@index([status])
+}
+
+model OrderItem {
+  id            String  @id @default(cuid())
+  orderId       String
+  order         Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId     String
+  product       Product @relation(fields: [productId], references: [id])
+  quantity      Int
+  selectedColor String
+  priceAtTime   Int
+  productName   String
+}
+
+model WishlistItem {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, productId])
+}

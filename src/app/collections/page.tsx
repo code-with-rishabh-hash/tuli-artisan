@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { COLLECTIONS } from "@/data/collections";
+import { getCollections } from "@/lib/dal";
 import { Reveal } from "@/components/ui/Reveal";
 import { Divider } from "@/components/ui/Divider";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -11,7 +11,9 @@ export const metadata: Metadata = {
   description: "Thoughtfully curated edits that tell a story through craft, color, and heritage.",
 };
 
-export default function CollectionsPage() {
+export default async function CollectionsPage() {
+  const collections = await getCollections();
+
   return (
     <div style={{ paddingTop: 130, background: "var(--color-bg)", minHeight: "100vh" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px 120px" }}>
@@ -21,7 +23,7 @@ export default function CollectionsPage() {
             <h1
               style={{
                 fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
-                fontWeight: 200,
+                fontWeight: 400,
                 color: "var(--color-dark)",
                 letterSpacing: "-0.02em",
                 lineHeight: 1.1,
@@ -46,10 +48,10 @@ export default function CollectionsPage() {
           </div>
         </Reveal>
         <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
-          {COLLECTIONS.map((c, i) => (
+          {collections.map((c, i) => (
             <Reveal key={c.id} delay={i * 0.1} direction="scale">
               <Link
-                href={`/collection/${c.id}`}
+                href={`/collection/${c.slug}`}
                 className="tuli-zoom-parent"
                 style={{
                   position: "relative",
@@ -85,7 +87,7 @@ export default function CollectionsPage() {
                   <h2
                     style={{
                       fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
-                      fontWeight: 200,
+                      fontWeight: 400,
                       color: "var(--color-text-on-dark)",
                       letterSpacing: "-0.02em",
                       lineHeight: 1.1,

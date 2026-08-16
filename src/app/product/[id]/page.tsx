@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { PRODUCTS, getProduct } from "@/data/products";
-import { getArtisan } from "@/data/artisans";
-import { formatPrice, getProductPromo } from "@/lib/utils";
+import { getProduct, getProducts, getArtisans, getArtisanById, getProductPromo } from "@/lib/dal";
+import { formatPrice } from "@/lib/utils";
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Img } from "@/components/ui/Img";
 import { Tag } from "@/components/ui/Tag";
 import { CraftBadge } from "@/components/ui/CraftBadge";
@@ -11,10 +11,12 @@ import { Divider } from "@/components/ui/Divider";
 import { Accordion } from "@/components/ui/Accordion";
 import { Breadcrumb } from "@/components/product/Breadcrumb";
 import { ProductActions } from "@/components/product/ProductActions";
+import { ProductGrid } from "@/components/product/ProductGrid";
 import Link from "next/link";
 
-export function generateStaticParams() {
-  return PRODUCTS.map((p) => ({ id: p.id }));
+export async function generateStaticParams() {
+  const products = await getProducts();
+  return products.map((p) => ({ id: p.slug }));
 }
 
 export async function generateMetadata({
@@ -23,7 +25,7 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const product = getProduct(id);
+  const product = await getProduct(id);
   if (!product) return { title: "Product Not Found" };
   return {
     title: product.name,
@@ -34,12 +36,30 @@ export async function generateMetadata({
 
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const product = getProduct(id);
+  const product = await getProduct(id);
 
   if (!product) notFound();
 
-  const artisan = getArtisan(product.artisanId);
-  const promo = getProductPromo(product.id);
+  const artisan = await getArtisanById(product.artisanId);
+  const promo = await getProductPromo(product.slug);
+
+  // Related: prefer other pieces by the same maker, then the same craft.
+  const all = await getProducts();
+  const sameArtisan = all.filter((p) => p.artisanId === product.artisanId && p.id !== product.id);
+  const sameCraft = all.filter(
+    (p) => p.craft === product.craft && p.artisanId !== product.artisanId && p.id !== product.id
+  );
+  const related = [...sameArtisan, ...sameCraft].slice(0, 4);
+
+  const relatedArtisans: Record<string, { name: string; region: string }> = {};
+  if (related.length) {
+    const allArtisans = await getArtisans();
+    for (const a of allArtisans) relatedArtisans[a.id] = { name: a.name, region: a.region };
+  }
+
+  const relatedHeading = sameArtisan.length
+    ? `More from ${artisan?.name ?? "this maker"}`
+    : `More in ${product.craft}`;
 
   return (
     <div style={{ paddingTop: 80, background: "var(--color-bg)", minHeight: "100vh" }}>
@@ -81,11 +101,11 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <CraftBadge craft={product.craft} />
             <h1
               style={{
-                fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
-                fontWeight: 300,
+                fontFamily: 'var(--font-cormorant, "Bodoni Moda", serif)',
+                fontWeight: 400,
                 color: "var(--color-dark)",
-                letterSpacing: "-0.02em",
-                lineHeight: 1.1,
+                letterSpacing: "-0.01em",
+                lineHeight: 1.05,
                 fontSize: "clamp(30px, 4vw, 46px)",
                 margin: "20px 0 10px",
               }}
@@ -94,15 +114,16 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             </h1>
             <p
               style={{
-                fontFamily: 'var(--font-karla, "Karla", sans-serif)',
-                fontSize: 13,
-                color: "var(--color-light)",
+                fontFamily: 'var(--font-cormorant, "Bodoni Moda", serif)',
+                fontStyle: "italic",
+                fontSize: 18,
+                color: "var(--color-mid)",
                 marginBottom: 28,
               }}
             >
               by{" "}
               <Link
-                href={`/artisan/${artisan?.id}`}
+                href={`/artisan/${artisan?.slug}`}
                 style={{
                   color: "var(--color-gold)",
                   borderBottom: "1px solid var(--color-gold)",
@@ -110,8 +131,8 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                 }}
               >
                 {artisan?.name}
-              </Link>{" "}
-              &middot; {artisan?.region}
+              </Link>
+              {artisan?.region ? `, ${artisan.region}` : ""}
             </p>
             <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 32 }}>
               <span
@@ -159,11 +180,41 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <Accordion title="Care Instructions" content={product.careInstructions} />
             <Accordion
               title="Shipping & Returns"
-              content="Free shipping above \u20B93,000. Handcrafted \u2014 allow 7\u201314 days. Returns within 7 days of delivery in original packaging."
+              content="Free shipping above \u20B93,000. Each piece is made to order, so please allow 7\u201314 days. Returns accepted within 7 days of delivery in original packaging."
             />
           </div>
         </Reveal>
       </div>
+
+      {related.length > 0 && (
+        <section style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px 120px" }}>
+          <Reveal>
+            <div
+              style={{
+                borderTop: "1px solid var(--color-divider)",
+                paddingTop: 56,
+                marginBottom: 48,
+              }}
+            >
+              <SectionLabel>You May Also Like</SectionLabel>
+              <h2
+                style={{
+                  fontFamily: 'var(--font-cormorant, "Bodoni Moda", serif)',
+                  fontWeight: 400,
+                  color: "var(--color-dark)",
+                  letterSpacing: "-0.01em",
+                  lineHeight: 1.05,
+                  fontSize: "clamp(26px, 3.4vw, 40px)",
+                  marginTop: 10,
+                }}
+              >
+                {relatedHeading}
+              </h2>
+            </div>
+          </Reveal>
+          <ProductGrid products={related} artisans={relatedArtisans} />
+        </section>
+      )}
     </div>
   );
 }

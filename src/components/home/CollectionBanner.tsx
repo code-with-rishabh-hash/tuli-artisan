@@ -44,7 +44,7 @@ export function CollectionBanner() {
               <h2
                 style={{
                   fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
-                  fontWeight: 200,
+                  fontWeight: 400,
                   color: "var(--color-text-on-dark)",
                   letterSpacing: "-0.02em",
                   lineHeight: 1.1,

@@ -149,9 +149,11 @@ export default function CartPage() {
                   {formatPrice(cartTotal)}
                 </span>
               </div>
-              <button className="tuli-btn-primary" style={{ width: "100%", fontSize: 12 }}>
-                Proceed to Checkout
-              </button>
+              <Link href="/checkout" style={{ display: "block", width: "100%", textDecoration: "none" }}>
+                <button className="tuli-btn-primary" style={{ width: "100%", fontSize: 12 }}>
+                  Proceed to Checkout
+                </button>
+              </Link>
               <p
                 style={{
                   fontFamily: 'var(--font-karla, "Karla", sans-serif)',
